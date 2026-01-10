@@ -1,0 +1,12 @@
+# Node modules dans frontend et backend
+v1/frontend/node_modules/
+v1/backend/node_modules/
+
+# Fichiers .env dans frontend et backend
+v1/frontend/.env
+v1/backend/.env
+
+# Dossier docs sauf le fichier PDF spécifique
+v1/docs/**
+!v1/docs/cahier-des-charges/
+!v1/docs/cahier-des-charges/salon_de_coiffeur.pdf
