@@ -1,17 +1,19 @@
 import express from 'express';
 import 'dotenv/config';
 import dbConnection from './databases/connection.js';
+import createDefaultAdmin from './utils/addAdmin.js';
 
 const app = express();
 const uri = process.env.MONGODB_URI;
 const port = process.env.PORT;
 
-app.get('/', (req, res)=>{
+app.get('/', (req, res) => {
     res.send('server running well');
 });
 const startServer = async () => {
     try {
         await dbConnection.ConnectToDb(uri);
+        await createDefaultAdmin();
         app.listen(port, () => {
             console.info(`server is running on : http://localhost:${port}/`);
         })
