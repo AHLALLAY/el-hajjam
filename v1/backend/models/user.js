@@ -37,16 +37,6 @@ const userSchema = mongoose.Schema({
         required: [true, "CIN is required"],
         unique: true,
     },
-    KYCStatus: {
-        type: String,
-        enum: ['pending', 'approved', 'rejected'],
-        default: 'pending',
-    },
-    nationalIdImage: {
-        type: String,
-        required: [true, "national id image is required"],
-        match: [/^.+\.(jpg|jpeg|png|gif)$/i, "national id image format is invalid"],
-    },
     status: {
         type: String,
         enum: ['active', 'inactive', 'suspendu'],
