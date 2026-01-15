@@ -62,15 +62,18 @@ L'application doit être **performante**, **sécurisée**, **scalable** et prép
 ```
 el-hajjam/
 ├── README.md                     # Ce fichier
-├── SYNTHESE_MODIFICATIONS.md     # Guide de synchronisation de la documentation
 └── v1/
-    ├── docs/                     # Documentation complète du projet
-    │   ├── cahier-des-charges/   # Cahier des charges LaTeX
-    │   ├── data/                 # Schémas de données MongoDB
-    │   ├── design/               # Guidelines UI/UX
-    │   ├── specifications/       # Spécifications fonctionnelles
-    │   └── technical/            # Documentation technique (API, sécurité, tests)
-    └── frontend/                 # Application React
+    ├── backend/                  # Application Node.js/Express
+    │   ├── controllers/          # Contrôleurs de l'API
+    │   ├── databases/            # Configuration MongoDB
+    │   ├── models/               # Modèles Mongoose
+    │   ├── services/             # Services métier
+    │   ├── middlewares/          # Middlewares Express
+    │   ├── utils/                # Utilitaires
+    │   └── index.js              # Point d'entrée du serveur
+    ├── docs/                     # Documentation du projet
+    │   └── cahier-des-charges/   # Cahier des charges
+    └── frontend/                 # Application React (à venir)
 ```
 
 ## 📚 Documentation
