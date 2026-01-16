@@ -2,7 +2,7 @@ import AppError from '../utils/AppError.js';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import TextMsg from '../config/msg.js';
-import User from '../models/UserModel.js';
+import User from '../models/User.js';
 import validation from '../utils/validation.js';
 
 class AuthService {
@@ -37,7 +37,6 @@ class AuthService {
             email: user.email,
             phone: user.phone,
             cin: user.cin,
-            birthDay: user.birthDay,
             role: user.role,
             token
         };
