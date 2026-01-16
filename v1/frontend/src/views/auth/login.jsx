@@ -12,7 +12,7 @@ function Login() {
                         label="email"
                         id="email"
                         value=""
-                        onChange={() => {}}
+                        onChange={() => { }}
                     />
                 </div>
                 <div>
@@ -21,16 +21,19 @@ function Login() {
                         label="password"
                         id="password"
                         value=""
-                        onChange={() => {}}
+                        onChange={() => { }}
                     />
                 </div>
                 <div>
                     <Button
                         type="submit"
-                        children="login"
-                    />
+                        onClick={() => { }}
+                        className=""
+                    >login</Button>
                 </div>
             </form>
         </div>
     );
 }
+
+export default Login;
