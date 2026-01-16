@@ -10,3 +10,6 @@ v1/backend/.env
 v1/docs/**
 !v1/docs/cahier-des-charges/
 !v1/docs/cahier-des-charges/salon_de_coiffeur.pdf
+
+# Configuration de l'éditeur
+v1/.vscode/
