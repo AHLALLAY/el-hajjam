@@ -1,11 +1,15 @@
 import './App.css'
+import { Routes, Route, BrowserRouter } from 'react-router-dom'
+import Login from './views/auth/login.jsx'
 
 function App() {
 
   return (
-      <h1>
-        this is app.jsx
-      </h1>
+    <BrowserRouter>
+      <Routes>
+        <Route path='/' index element={<Login />}></Route>
+      </Routes>
+    </BrowserRouter>
   );
 }
 
