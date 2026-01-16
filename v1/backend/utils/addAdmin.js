@@ -1,4 +1,4 @@
-import User from '../models/user.js'
+import User from './models/user.js';
 import { hash } from 'bcryptjs';
 import 'dotenv/config';
 
@@ -18,8 +18,6 @@ async function createDefaultAdmin() {
             phone: "0600000000",
             role: "admin",
             cin: "xx0000",
-            KYCStatus: "approved",
-            nationalIdImage: "admin.jpg",
         });
         console.info('Admin created successfully');
         return true;
