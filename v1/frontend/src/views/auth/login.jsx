@@ -1,5 +1,5 @@
 import Input from '../../components/ui/input.jsx';
-import Button from '../../components/button.jsx';
+import Button from '../../components/ui/button.jsx';
 
 function Login() {
     return (
@@ -8,25 +8,25 @@ function Login() {
                 <h2>login</h2>
                 <div>
                     <Input
-                        type={email}
-                        label={email}
-                        id={email}
+                        type="email"
+                        label="email"
+                        id="email"
                         value=""
-                        onChange=""
+                        onChange={() => {}}
                     />
                 </div>
                 <div>
                     <Input
-                        type={Password}
-                        label={Password}
-                        id={Password}
+                        type="password"
+                        label="password"
+                        id="password"
                         value=""
-                        onChange=""
+                        onChange={() => {}}
                     />
                 </div>
                 <div>
                     <Button
-                        type={submit}
+                        type="submit"
                         children="login"
                     />
                 </div>
