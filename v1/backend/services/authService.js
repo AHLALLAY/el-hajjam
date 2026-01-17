@@ -2,14 +2,14 @@ import AppError from '../utils/AppError.js';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import TextMsg from '../config/msg.js';
-import User from '../models/User.js';
+import User from '../models/user.js';
 import validation from '../utils/validation.js';
 
 class AuthService {
     async login(identifiant) {
         const { email, password } = identifiant;
         if (!email || !password) {
-            throw AppError.validation(TextMsg.emptyField);
+            throw AppError.validation(TextMsg.emptyField());
         }
         if (!validation.isValidEmail(email)) {
             throw AppError.validation(TextMsg.invalide("email"));
