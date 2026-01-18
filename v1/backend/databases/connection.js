@@ -7,15 +7,15 @@ class Connection {
     async ConnectToDb(uri) {
         try {
             if (!uri) {
-                console.log("Erreur fatale: MONGODB_URI n'est pas défini dans .env");
+                console.error("Fatal error: MONGODB_URI is not defined in .env");
                 process.exit(1);
             }
             const conn = await mongoose.connect(uri);
             this.isConnected = true;
-            console.log("MongoDb Connecté");
+            console.info("MongoDB Connected");
             return conn;
         } catch (e) {
-            console.error(`Erreur de connexion MongoDb : ${e.message}`);
+            console.error(`MongoDB connection error: ${e.message}`);
             process.exit(1);
         }
     }

@@ -3,29 +3,29 @@ import mongoose from 'mongoose';
 const userSchema = mongoose.Schema({
     firstName: {
         type: String,
-        required: [true, "first name is required"],
+        required: [true, "Le prénom est requis"],
     },
     lastName: {
         type: String,
-        required: [true, "last name is required"],
+        required: [true, "Le nom est requis"],
     },
     email: {
         type: String,
-        required: [true, "email is required"],
+        required: [true, "L'email est requis"],
         unique: true,
         lowercase: true,
         trim: true,
     },
     password: {
         type: String,
-        required: [true, "password is required"],
-        minlength: [8, "password must be at least 8 characters long"],
+        required: [true, "Le mot de passe est requis"],
+        minlength: [8, "Le mot de passe doit contenir au moins 8 caractères"],
         select: false,
     },
     phone: {
         type: String,
-        required: [true, "phone is required"],
-        match: [/^(\+2126|\+2127|06|07)[0-9]{8}$/, "phone number format is invalid"],
+        required: [true, "Le numéro de téléphone est requis"],
+        match: [/^(\+2126|\+2127|06|07)[0-9]{8}$/, "Le format du numéro de téléphone est invalide"],
     },
     role: {
         type: String,
@@ -34,13 +34,13 @@ const userSchema = mongoose.Schema({
     },
     cin: {
         type: String,
-        required: [true, "CIN is required"],
+        required: [true, "Le CIN est requis"],
         unique: true,
     },
     status: {
         type: String,
-        enum: ['active', 'inactive', 'suspendu'],
-        default: 'active',
+        enum: ['actif', 'inactif', 'suspendu'],
+        default: 'actif',
     },
     address: {
         type: String,
