@@ -1,7 +1,6 @@
-class TextMsg{
-    emptyField() {return "Veuillez remplir tous les champs";}
-    invalide(emailOrPassword) {return `${emailOrPassword} est invalide`;}
-    noAuthorized() {return "L'email ou le mot de passe n'est pas correct";}
+class TextMsg {
+    emptyFields() { return "Veuillez remplir tous les champs"; }
+    invalid(field) { return `${field} est invalide`; }
+    unAuthorized() { return "Email ou mot de passe incorrect"; }
 }
-
 export default new TextMsg();

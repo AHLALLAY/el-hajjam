@@ -9,21 +9,21 @@ class AuthService {
     async login(identifiant) {
         const { email, password } = identifiant;
         if (!email || !password) {
-            throw AppError.validation(TextMsg.emptyField());
+            throw AppError.validation(TextMsg.emptyFields());
         }
         if (!validation.isValidEmail(email)) {
-            throw AppError.validation(TextMsg.invalide("email"));
+            throw AppError.validation(TextMsg.invalid("email"));
         }
         if (!validation.isValidPassword(password)) {
-            throw AppError.validation(TextMsg.invalide("password"));
+            throw AppError.validation(TextMsg.invalid("password"));
         }
         const user = await User.findOne({ email });
         if (!user) {
-            throw AppError.unauthorized(TextMsg.noAuthorized());
+            throw AppError.unauthorized(TextMsg.unAuthorized());
         }
-        const isMatch = await bcrypt.compare(password, user.password);
-        if (!isMatch) {
-            throw AppError.unauthorized(TextMsg.noAuthorized());
+        const isPasswordMatch = await bcrypt.compare(password, user.password);
+        if (!isPasswordMatch) {
+            throw AppError.unauthorized(TextMsg.unAuthorized());
         }
         const token = jwt.sign(
             { id: user._id, role: user.role },

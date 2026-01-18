@@ -3,18 +3,20 @@ import { hash } from 'bcryptjs';
 import 'dotenv/config';
 
 async function createDefaultAdmin() {
-    const adminEmail = await User.findOne({
+    const existingAdmin = await User.findOne({
         email: process.env.ADMIN_EMAIL,
         role: 'admin',
     });
 
-    if (!adminEmail) {
-        const hashedpwd = await hash(process.env.ADMIN_PASSWORD, Number(process.env.BCRYPT_SALT_ROUNDS));
-        const user = await User.create({
+    if (!existingAdmin) {
+        const saltRounds = Number(process.env.BCRYPT_SALT_ROUNDS) || 10;
+        const hashedPassword = await hash(process.env.ADMIN_PASSWORD, saltRounds);
+        
+        await User.create({
             firstName: "admin",
             lastName: "admin",
             email: process.env.ADMIN_EMAIL,
-            password: hashedpwd,
+            password: hashedPassword,
             phone: "0600000000",
             role: "admin",
             cin: "xx0000",

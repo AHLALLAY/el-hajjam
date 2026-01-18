@@ -4,17 +4,17 @@ const operationSchema = mongoose.Schema({
     serviceId:{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Service',
-        required:[true,"service id is required"],
+        required:[true, "L'identifiant du service est requis"],
     },
     amountReceived:{
         type: Number,
-        required:[true,"amount received is required"],
-        min: 0,
+        required:[true, "Le montant reçu est requis"],
+        min: [0, "Le montant reçu ne peut pas être inférieur à 0"],
     },
     hairdresserId:{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User',
-        required:[true,"hairdresser id is required"],
+        required:[true, "L'identifiant du coiffeur est requis"],
     },
 },{
     timestamps: true,

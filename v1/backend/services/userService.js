@@ -8,20 +8,20 @@ class UserService {
 
     async getHairDresserById(hairdresserId) {
         const user = await User.findById(hairdresserId).select('-password -__v');
-        if (!user) throw new Error('Hairdresser not found');
+        if (!user) throw new Error('Utilisateur non trouvé');
         return user;
     }
 
     async createHairdresser(hairdresserData) {
         const existingUser = await User.findOne({ email: hairdresserData.email });
         if (existingUser) {
-            throw new Error('Email already exists');
+            throw new Error('Cet email est déjà utilisé');
         }
 
-        const hashedPwd = await hash(hairdresserData.password, 10);
+        const hashedPassword = await hash(hairdresserData.password, 10);
         const user = await User.create({
             ...hairdresserData,
-            password: hashedPwd
+            password: hashedPassword
         });
 
         const userObject = user.toObject();
