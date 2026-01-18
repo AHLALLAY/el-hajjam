@@ -1,4 +1,4 @@
-import userService from "../services/userService";
+import userService from "../services/userService.js";
 import rr from "../utils/returns.js";
 
 class UserController {
