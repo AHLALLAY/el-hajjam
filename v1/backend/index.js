@@ -2,12 +2,16 @@ import express from 'express';
 import 'dotenv/config';
 import dbConnection from './databases/connection.js';
 import createDefaultAdmin from './utils/addAdmin.js';
+import userRoute from './routes/userRoute.js';
+
 
 const app = express();
 const uri = process.env.MONGODB_URI;
 const port = process.env.PORT || 3000;
 
 app.use(express.json());
+
+app.use('api/users', userRoute);
 
 app.get('/', (req, res) => {
     res.send('The server is running correctly');
