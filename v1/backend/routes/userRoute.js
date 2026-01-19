@@ -3,6 +3,6 @@ import userController from '../controllers/userController.js';
 
 const router = express.Router();
 
-router.use('/hairdressers', userController.getHairdressers);
+router.get('/hairdressers', userController.getHairdressers);
 
 export default router;
