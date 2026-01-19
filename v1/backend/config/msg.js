@@ -1,15 +1,20 @@
 class TextMsg {
 
     emptyFields() { return "Veuillez remplir tous les champs"; }
-    invalid(item = "données") { return item === "données" ? "Données invalides" : `${item} est invalide`; }
+    invalid(item) { return `${item} est invalide`; }
 
-    exists(item = "Cette ressource") { return `${item} existe déjà`; }
+    exists(item) { return `${item} existe déjà`; }
 
-    loginFailed() { return "Email ou mot de passe incorrect"; }
+    authFailed() { return "Email ou mot de passe incorrect"; }
     unauthenticated() { return "Session expirée ou invalide, veuillez vous reconnecter"; }
     forbidden() { return "Vous n'avez pas les droits pour effectuer cette action"; }
+    authSuccess() { return "Authentification réussie"; }
 
-    notFound(item = "La ressource") { return `${item} est introuvable`; }
-    
-    serverError() { return "Une erreur interne est survenue"; }
+    notFound(item) { return `${item} est introuvable`; }
+
+    serverError() { return "Une erreur interne est survenue, veuillez réessayer plus tard"; }
+
+    hairdresserListe(){return "Liste des coiffeurs récupérée";}
 }
+
+export default new TextMsg();
