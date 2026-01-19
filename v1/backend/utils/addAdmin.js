@@ -1,5 +1,5 @@
 import User from '../models/user.js';
-import { hash } from 'bcryptjs';
+import bcrypt from 'bcryptjs';
 import 'dotenv/config';
 
 async function createDefaultAdmin() {
@@ -10,7 +10,7 @@ async function createDefaultAdmin() {
 
     if (!existingAdmin) {
         const saltRounds = Number(process.env.BCRYPT_SALT_ROUNDS) || 10;
-        const hashedPassword = await hash(process.env.ADMIN_PASSWORD, saltRounds);
+        const hashedPassword = await bcrypt.hash(process.env.ADMIN_PASSWORD, saltRounds);
         
         await User.create({
             firstName: "admin",
