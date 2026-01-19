@@ -1,13 +1,14 @@
 import userService from "../services/userService.js";
+import TextMsg from "../config/msg.js";
 import rr from "../utils/returns.js";
 
 class UserController {
-    async getHairdressers(req, res) {
+    async getHairdressers(req, res, next) {
         try {
             const users = await userService.getHairdressers();
-            return rr(res, 200, true, "Liste des coiffeurs récupérée", users);
+            return rr(res, 200, true, TextMsg.hairdresserListe(), users);
         } catch (error) {
-            return rr(res, 500, false, "Erreur lors de la récupération", null, error.message);
+            next(error);
         }
     }
 }
