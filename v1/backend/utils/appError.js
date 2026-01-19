@@ -15,7 +15,7 @@ class AppError extends Error {
         return error;
     }
 
-    loginFailed() {
+    authFailed() {
         const error = new AppError(TextMsg.authFailed(), 401);
         error.name = 'AuthenticationError';
         return error;
