@@ -3,18 +3,28 @@ import 'dotenv/config';
 import dbConnection from './databases/connection.js';
 import createDefaultAdmin from './utils/addAdmin.js';
 import userRoute from './routes/userRoute.js';
-
+import authRoute from './routes/authRoute.js';
+import TextMsg from './config/msg.js';
+import rr from './utils/returns.js';
 
 const app = express();
 const uri = process.env.MONGODB_URI;
 const port = process.env.PORT || 3000;
+const API_BASE_URL = '/api/v1';
 
 app.use(express.json());
 
-app.use('api/users', userRoute);
+app.use(`${API_BASE_URL}/users`, userRoute);
+app.use(`${API_BASE_URL}/auth`, authRoute);
 
 app.get('/', (req, res) => {
     res.send('The server is running correctly');
+});
+
+app.use((err, req, res, next) => {
+    const statusCode = err.statusCode || 500;
+    const message = err.message || TextMsg.serverError();
+    return rr(res, statusCode, false, message, null, err.name);
 });
 
 const startServer = async () => {
