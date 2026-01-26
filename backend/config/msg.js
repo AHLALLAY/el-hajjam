@@ -15,6 +15,7 @@ class TextMsg {
     serverError() { return "Une erreur interne est survenue, veuillez réessayer plus tard"; }
 
     hairdresserListe(){return "Liste des coiffeurs récupérée";}
+    hairdresser(){return "Coiffeur récupéré";}
 }
 
 export default new TextMsg();
