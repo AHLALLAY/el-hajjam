@@ -11,6 +11,16 @@ class UserController {
             next(error);
         }
     }
+
+    async getHairDresserById(req, res, next){
+        try{
+            const user = await userService.getHairDresserById(req.body.id);
+            return rr(res, 200, true, TextMsg.hairdresser(), user);
+        }catch(error){
+            next(error);
+        }
+    }
+    
 }
 
 export default new UserController();
