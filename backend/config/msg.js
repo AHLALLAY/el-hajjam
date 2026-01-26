@@ -16,6 +16,7 @@ class TextMsg {
 
     hairdresserListe(){return "Liste des coiffeurs récupérée";}
     hairdresser(){return "Coiffeur récupéré";}
+    hairdresserCreate(){return "Coiffeur créé avec succès";}
 }
 
 export default new TextMsg();
