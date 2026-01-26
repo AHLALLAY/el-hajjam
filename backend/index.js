@@ -6,6 +6,7 @@ import userRoute from './routes/userRoute.js';
 import authRoute from './routes/authRoute.js';
 import TextMsg from './config/msg.js';
 import rr from './utils/returns.js';
+import cors from 'cors';
 
 const app = express();
 const uri = process.env.MONGODB_URI;
@@ -13,6 +14,11 @@ const port = process.env.PORT || 3000;
 const API_BASE_URL = '/api/v1';
 
 app.use(express.json());
+app.use(cors({
+    origin: process.env.CORS_ORIGIN,
+    credentials: true,
+    methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
+}));
 
 app.use(`${API_BASE_URL}/users`, userRoute);
 app.use(`${API_BASE_URL}/auth`, authRoute);
