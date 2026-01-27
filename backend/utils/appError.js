@@ -9,8 +9,8 @@ class AppError extends Error {
         Error.captureStackTrace(this, this.constructor);
     }
 
-    validation(item) {
-        const error = new AppError(TextMsg.invalid(item), 400);
+    validation(items) {
+        const error = new AppError(TextMsg.invalid(items), 400);
         error.name = 'ValidationError';
         return error;
     }
