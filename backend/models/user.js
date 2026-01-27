@@ -25,7 +25,7 @@ const userSchema = mongoose.Schema({
     phone: {
         type: String,
         required: [true, "Le numéro de téléphone est requis"],
-        match: [/^(\+2126|\+2127|06|07)[0-9]{8}$/, "Le format du numéro de téléphone est invalide"],
+        match: [/^(\+212|0)(5|6|7)[0-9]{8}$/, "Le format du numéro de téléphone est invalide"],
     },
     role: {
         type: String,
