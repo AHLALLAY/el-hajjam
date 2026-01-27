@@ -7,12 +7,14 @@ import validation from '../utils/validation.js';
 class AuthService {
     async login(credentials) {
         const { email, password } = credentials;
-        if (!email || !password) throw AppError.validation();
+        if (!email || !password) throw AppError.validation(["email", "password"]);
         if (!validation.isValidEmail(email)) throw AppError.validation("l'email");
         if (!validation.isValidPassword(password)) throw AppError.validation("le mot de passe");
 
         const user = await User.findOne({ email }).select('+password');
         if (!user) throw AppError.authFailed();
+
+        if (user.status === 'suspendu') throw AppError.forbidden();
 
         const isPasswordMatch = await bcrypt.compare(password, user.password);
         if (!isPasswordMatch) throw AppError.authFailed();
@@ -20,7 +22,7 @@ class AuthService {
         const token = jwt.sign(
             { id: user._id, role: user.role },
             process.env.JWT_SECRET,
-            { expiresIn: '1h' }
+            { expiresIn: process.env.JWT_EXPIRES_IN }
         );
 
         return {
