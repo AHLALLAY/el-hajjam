@@ -1,7 +1,7 @@
 class TextMsg {
 
     emptyFields() { return "Veuillez remplir tous les champs"; }
-    invalid(item) { return `${item} est invalide`; }
+    invalid(items) { return `${items.join(' ou ')} est invalide`; }
 
     exists(item) { return `${item} existe déjà`; }
 
