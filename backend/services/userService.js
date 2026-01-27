@@ -4,19 +4,28 @@ import AppError from '../utils/appError.js';
 
 class UserService {
     async getHairdressers() {
-        return await User.find({ role: 'coiffeur' }, '-password -__v');
+        const users = await User.find({ role: 'coiffeur' }, '-password -__v');
+        if (users.length === 0) throw AppError.notFound("Coiffeurs");
+        return users;
     }
 
     async getHairDresserById(hairdresserId) {
+        if (!hairdresserId) throw AppError.validation("hairdresserId");
         const user = await User.findById(hairdresserId).select('-password -__v');
-        if (!user) throw AppError.notFound("L'utilisateur");
+        if (!user) throw AppError.notFound("Coiffeur");
+        if (user.role !== 'coiffeur') throw AppError.forbidden();
         return user;
     }
 
     async createHairdresser(hairdresserData) {
-        const existingUser = await User.findOne({ email: hairdresserData.email });
-        if (existingUser) {
+        const existingEmail = await User.findOne({ email: hairdresserData.email });
+        if (existingEmail) {
             throw AppError.conflict("Cet email");
+        }
+
+        const existingCin = await User.findOne({ cin: hairdresserData.cin });
+        if (existingCin) {
+            throw AppError.conflict("Ce CIN");
         }
 
         const hashedPassword = await bcrypt.hash(hairdresserData.password, 10);
