@@ -14,11 +14,11 @@ const barberShopSchema = mongoose.Schema({
         ref: 'User',
         required: [true, "Le responsable est requis"],
     },
-    status:{
+    status: {
         type: String,
         required: [true, "Le statut est requis"],
         enum: ['actif', 'inactif', 'fermé'],
-        default : 'actif',
+        default: 'actif',
     }
 }, {
     timestamps: true,

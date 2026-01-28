@@ -2,22 +2,22 @@ import mongoose from "mongoose";
 
 
 const serviceSchema = mongoose.Schema({
-    name:{
-        type:String,
-        required:[true, "Le nom du service est requis"],
+    name: {
+        type: String,
+        required: [true, "Le nom du service est requis"],
         unique: true,
         trim: true,
     },
-    price:{
+    price: {
         type: Number,
-        required:[true, "Le prix est requis"],
+        required: [true, "Le prix est requis"],
         min: [0, "Le prix ne peut pas être négatif"],
     },
-    active:{
+    active: {
         type: Boolean,
         default: true,
     }
-},{
+}, {
     timestamps: true,
 });
 

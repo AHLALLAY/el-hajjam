@@ -1,9 +1,9 @@
 import mongoose from 'mongoose';
 
 const chairSchema = mongoose.Schema({
-    number:{
+    number: {
         type: Number,
-        required:[true, "Le numéro est requis"],
+        required: [true, "Le numéro est requis"],
         min: [1, "Le numéro doit être supérieur à 0"]
     },
     barberShopId: {
@@ -30,4 +30,4 @@ const chairSchema = mongoose.Schema({
     timestamps: true,
 });
 
-export default mongoose.model('Chair', chairSchema)
+export default mongoose.model('Chair', chairSchema);

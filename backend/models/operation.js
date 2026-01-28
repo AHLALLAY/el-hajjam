@@ -1,22 +1,22 @@
 import mongoose from "mongoose";
 
 const operationSchema = mongoose.Schema({
-    serviceId:{
+    serviceId: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Service',
-        required:[true, "L'identifiant du service est requis"],
+        required: [true, "L'identifiant du service est requis"],
     },
-    amountReceived:{
+    amountReceived: {
         type: Number,
-        required:[true, "Le montant reçu est requis"],
+        required: [true, "Le montant reçu est requis"],
         min: [0, "Le montant reçu ne peut pas être inférieur à 0"],
     },
-    hairdresserId:{
+    hairdresserId: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User',
-        required:[true, "L'identifiant du coiffeur est requis"],
+        required: [true, "L'identifiant du coiffeur est requis"],
     },
-},{
+}, {
     timestamps: true,
     toJSON: { virtuals: true },
     toObject: { virtuals: true },
