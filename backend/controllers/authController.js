@@ -8,7 +8,7 @@ class AuthController {
             const user = await authService.login(req.body);
             return rr(res, 200, true, TextMsg.authSuccess(), user);
         } catch (error) {
-            next(error);
+            return next(error);
         }
     }
 }

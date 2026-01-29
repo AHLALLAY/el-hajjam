@@ -8,7 +8,7 @@ class UserController {
             const users = await userService.getHairdressers();
             return rr(res, 200, true, TextMsg.hairdresserList(), users);
         } catch (error) {
-            next(error);
+            return next(error);
         }
     }
 
@@ -17,7 +17,7 @@ class UserController {
             const user = await userService.getHairdresserById(req.params.id);
             return rr(res, 200, true, TextMsg.hairdresserRetrieved(), user);
         } catch (error) {
-            next(error);
+            return next(error);
         }
     }
 
@@ -26,7 +26,7 @@ class UserController {
             const user = await userService.createHairdresser(req.body);
             return rr(res, 201, true, TextMsg.hairdresserCreated(), user);
         } catch (error) {
-            next(error);
+            return next(error);
         }
     }
 }

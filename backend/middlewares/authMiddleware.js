@@ -6,7 +6,7 @@ export async function isAuthenticated(req, res, next) {
         const token = userUtils.extractToken(req.headers);
         const jwtDecoded = userUtils.verifyToken(token);
         await userUtils.findUserById(req, jwtDecoded.id);
-        next();
+        return next();
     } catch (error) {
         return next(AppError.unauthenticated());
     }
