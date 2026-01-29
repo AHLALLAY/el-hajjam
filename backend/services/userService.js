@@ -9,7 +9,7 @@ class UserService {
         return users;
     }
 
-    async getHairDresserById(hairdresserId) {
+    async getHairdresserById(hairdresserId) {
         if (!hairdresserId) throw AppError.validation("hairdresserId");
         const user = await User.findById(hairdresserId).select('-password -__v');
         if (!user) throw AppError.notFound("Coiffeur");

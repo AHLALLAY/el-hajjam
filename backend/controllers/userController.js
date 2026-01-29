@@ -6,16 +6,16 @@ class UserController {
     async getHairdressers(req, res, next) {
         try {
             const users = await userService.getHairdressers();
-            return rr(res, 200, true, TextMsg.hairdresserListe(), users);
+            return rr(res, 200, true, TextMsg.hairdresserList(), users);
         } catch (error) {
             next(error);
         }
     }
 
-    async getHairDresserById(req, res, next) {
+    async getHairdresserById(req, res, next) {
         try {
-            const user = await userService.getHairDresserById(req.params.id);
-            return rr(res, 200, true, TextMsg.hairdresser(), user);
+            const user = await userService.getHairdresserById(req.params.id);
+            return rr(res, 200, true, TextMsg.hairdresserRetrieved(), user);
         } catch (error) {
             next(error);
         }
@@ -24,7 +24,7 @@ class UserController {
     async createHairdresser(req, res, next) {
         try {
             const user = await userService.createHairdresser(req.body);
-            return rr(res, 201, true, TextMsg.hairdresserCreate(), user);
+            return rr(res, 201, true, TextMsg.hairdresserCreated(), user);
         } catch (error) {
             next(error);
         }
