@@ -3,6 +3,9 @@ import bcrypt from 'bcryptjs';
 import 'dotenv/config';
 
 async function createDefaultAdmin() {
+    if (!process.env.ADMIN_EMAIL || !process.env.ADMIN_PASSWORD) {
+        throw new Error('ADMIN_EMAIL et ADMIN_PASSWORD doivent être définis dans .env');
+    }
     const existingAdmin = await User.findOne({
         email: process.env.ADMIN_EMAIL,
         role: 'admin',
@@ -11,7 +14,7 @@ async function createDefaultAdmin() {
     if (!existingAdmin) {
         const saltRounds = Number(process.env.BCRYPT_SALT_ROUNDS) || 10;
         const hashedPassword = await bcrypt.hash(process.env.ADMIN_PASSWORD, saltRounds);
-        
+
         await User.create({
             firstName: "admin",
             lastName: "admin",
