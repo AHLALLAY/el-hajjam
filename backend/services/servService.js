@@ -8,6 +8,12 @@ class ServService {
         return services;
     }
 
+    async getServiceById(serviceId) {
+        if (!serviceId) throw AppError.validation("serviceId");
+        const service = await Service.findById(serviceId);
+        return service;
+    }
+
 }
 
 export default new ServService();
