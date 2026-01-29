@@ -20,14 +20,6 @@ class UserUtils {
         req.user = user;
     }
 
-    check(field, value) {
-        return (req, res, next) => {
-            if (!req.user) return next(AppError.forbidden());
-            if (req.user[field] === value) return next();
-            return next(AppError.forbidden());
-        };
-    }
-
 }
 
 export default new UserUtils();
