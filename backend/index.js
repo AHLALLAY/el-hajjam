@@ -35,7 +35,7 @@ app.use((err, req, res, next) => {
 
 const startServer = async () => {
     try {
-        await dbConnection.ConnectToDb(uri);
+        await dbConnection.connectToDb(uri);
         await createDefaultAdmin();
         app.listen(port, () => {
             console.info(`Server is running on: http://localhost:${port}/`);

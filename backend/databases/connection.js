@@ -4,7 +4,7 @@ class Connection {
         this.isConnected = false;
     }
 
-    async ConnectToDb(uri) {
+    async connectToDb(uri) {
         try {
             if (!uri) {
                 console.error("Fatal error: MONGODB_URI is not defined in .env");
