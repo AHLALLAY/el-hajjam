@@ -9,41 +9,42 @@ class AppError extends Error {
         Error.captureStackTrace(this, this.constructor);
     }
 
-    validation(items) {
-        const error = new AppError(TextMsg.invalid(items), 400);
+    static validation(items) {
+        const list = Array.isArray(items) ? items : [items];
+        const error = new AppError(TextMsg.invalid(list), 400);
         error.name = 'ValidationError';
         return error;
     }
 
-    authFailed() {
+    static authFailed() {
         const error = new AppError(TextMsg.authFailed(), 401);
         error.name = 'AuthenticationError';
         return error;
     }
 
-    unauthenticated() {
+    static unauthenticated() {
         const error = new AppError(TextMsg.unauthenticated(), 401);
         error.name = 'UnauthenticatedError';
         return error;
     }
 
-    forbidden() {
+    static forbidden() {
         const error = new AppError(TextMsg.forbidden(), 403);
         error.name = 'ForbiddenError';
         return error;
     }
 
-    notFound(item) {
+    static notFound(item) {
         const error = new AppError(TextMsg.notFound(item), 404);
         error.name = 'NotFoundError';
         return error;
     }
 
-    conflict(item) {
+    static conflict(item) {
         const error = new AppError(TextMsg.exists(item), 409);
         error.name = 'ConflictError';
         return error;
     }
 }
 
-export default new AppError();
+export default AppError;
