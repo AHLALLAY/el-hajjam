@@ -1,7 +1,7 @@
 class TextMsg {
 
     emptyFields() { return "Veuillez remplir tous les champs"; }
-    invalid(items) { return `${items.join(' ou ')} est invalide`; }
+    invalid(items) { return items.length <= 1 ? `${items} est invalide` : `${items.join(' ou ')} sont invalides`; }
 
     exists(item) { return `${item} existe déjà`; }
 
@@ -14,9 +14,9 @@ class TextMsg {
 
     serverError() { return "Une erreur interne est survenue, veuillez réessayer plus tard"; }
 
-    hairdresserListe(){return "Liste des coiffeurs récupérée";}
-    hairdresser(){return "Coiffeur récupéré";}
-    hairdresserCreate(){return "Coiffeur créé avec succès";}
+    hairdresserList() { return "Liste des coiffeurs récupérée"; }
+    hairdresserRetrieved() { return "Coiffeur récupéré"; }
+    hairdresserCreated() { return "Coiffeur créé avec succès"; }
 }
 
 export default new TextMsg();
