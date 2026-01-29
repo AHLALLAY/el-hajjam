@@ -1,14 +1,19 @@
 import AppError from "../utils/appError.js";
-import check from "../utils/userUtils.js";
+import userUtils from "../utils/userUtils.js";
 
-export function isAdminOrHairdresser(req, res, next) {
+export function isAdminOrOwnHairdresser(req, res, next) {
   if (!req.user) return next(AppError.forbidden());
-  if (req.user.role === 'admin' || req.user.role === 'coiffeur') return next();
+  if (req.user.role === 'admin') return next();
+  if (req.user.role === 'coiffeur') {
+    const requestedId = req.params.id;
+    const ownId = req.user._id?.toString() ?? req.user.id;
+    if (requestedId === ownId) return next();
+  }
   return next(AppError.forbidden());
 }
 
-export const isAdmin = check("role", "admin");
-export const isHairdresser = check("role", "coiffeur");
-export const isActif = check("status", "actif");
-export const isInactif = check("status", "inactif");
-export const isSuspended = check("status", "suspendu");
+export const isAdmin = userUtils.check("role", "admin");
+export const isHairdresser = userUtils.check("role", "coiffeur");
+export const isActif = userUtils.check("status", "actif");
+export const isInactif = userUtils.check("status", "inactif");
+export const isSuspended = userUtils.check("status", "suspendu");
