@@ -1,7 +1,7 @@
 import express from 'express';
 import servController from '../controllers/servController';
 import { isAuthenticated } from '../middlewares/authMiddleware';
-import { isAdminOrHairdresser } from '../middlewares/userMiddleware';
+import { isAdmin, isAdminOrHairdresser } from '../middlewares/userMiddleware';
 
 const router = express.Router();
 
@@ -9,5 +9,11 @@ const router = express.Router();
 router.get('/services',
     isAuthenticated,
     isAdminOrHairdresser,
-    servController.getServices);
+    servController.getServices
+);
 
+router.post('/service',
+    isAuthenticated,
+    isAdmin,
+    servController.createService
+);
