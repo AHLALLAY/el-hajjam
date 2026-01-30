@@ -13,6 +13,16 @@ class ServService {
         const service = await Service.findById(serviceId);
         return service;
     }
+    
+    async createService(serviceData) {
+        const existingService = await ServService.findOne({name: serviceData.name});
+
+        if(existingService) throw AppError.conflict("Ce Service");
+
+        const service = await Service.create(serviceData);
+
+        return Service;
+    }
 
 }
 
