@@ -6,7 +6,7 @@ class UserController {
     async getHairdressers(req, res, next) {
         try {
             const users = await userService.getHairdressers();
-            return rr(res, 200, true, TextMsg.hairdresserList(), users);
+            return rr(res, 200, true, TextMsg.getListe("coiffeurs"), users);
         } catch (error) {
             return next(error);
         }
@@ -15,7 +15,7 @@ class UserController {
     async getHairdresserById(req, res, next) {
         try {
             const user = await userService.getHairdresserById(req.params.id);
-            return rr(res, 200, true, TextMsg.hairdresserRetrieved(), user);
+            return rr(res, 200, true, TextMsg.getOne("Coiffeur"), user);
         } catch (error) {
             return next(error);
         }
@@ -24,7 +24,7 @@ class UserController {
     async createHairdresser(req, res, next) {
         try {
             const user = await userService.createHairdresser(req.body);
-            return rr(res, 201, true, TextMsg.hairdresserCreated(), user);
+            return rr(res, 201, true, TextMsg.itemCreated("Coiffeur"), user);
         } catch (error) {
             return next(error);
         }

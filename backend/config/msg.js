@@ -14,9 +14,11 @@ class TextMsg {
 
     serverError() { return "Une erreur interne est survenue, veuillez réessayer plus tard"; }
 
-    hairdresserList() { return "Liste des coiffeurs récupérée"; }
-    hairdresserRetrieved() { return "Coiffeur récupéré"; }
-    hairdresserCreated() { return "Coiffeur créé avec succès"; }
+    getListe(items) { return `Liste des ${items} récupérée`; }
+    getOne(item) { return `${item} récupérée`; }
+    itemCreated(item) { return "Coiffeur créé avec succès"; }
+
+    itemCreated(item) { return `${item} créé avec succès"`; }
 }
 
 export default new TextMsg();
