@@ -16,9 +16,7 @@ class TextMsg {
 
     getListe(items) { return `Liste des ${items} récupérée`; }
     getOne(item) { return `${item} récupérée`; }
-    itemCreated(item) { return "Coiffeur créé avec succès"; }
-
-    itemCreated(item) { return `${item} créé avec succès"`; }
+    itemCreated(item) { return `${item} créé avec succès`; }
 }
 
 export default new TextMsg();
