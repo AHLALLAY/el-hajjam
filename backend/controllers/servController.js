@@ -2,13 +2,21 @@ import servService from "../services/servService.js";
 import rr from "../utils/returns.js";
 import TextMsg from "../config/msg.js";
 
-
-class ServController{
-    async getServices(req, req, next){
-        try{
+class ServController {
+    async getServices(req, res, next) {
+        try {
             const services = await servService.getServices();
-            return rr(req, 200, true, TextMsg.getListe("services"), services);
-        }catch(error){
+            return rr(res, 200, true, TextMsg.getListe("services"), services);
+        } catch (error) {
+            return next(error);
+        }
+    }
+
+    async createService(req, res, next) {
+        try {
+            const service = await servService.createService(req.body);
+            return rr(res, 201, true, TextMsg.itemCreated("Service"), service);
+        } catch (error) {
             return next(error);
         }
     }
