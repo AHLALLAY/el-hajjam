@@ -18,7 +18,12 @@ class ServService {
         const existingService = await Service.findOne({name: serviceData.name});
         if(existingService) throw AppError.conflict("Ce Service");
         const service = await Service.create(serviceData);
-        return service;
+        const serviveObj = service.toObject();
+        delete serviveObj._id;
+        delete serviveObj.__v;
+        delete serviveObj.createdAt;
+        delete serviveObj.updatedAt;
+        return serviveObj;
     }
 
 }
