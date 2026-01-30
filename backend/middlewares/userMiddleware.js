@@ -11,6 +11,13 @@ export function isAdminOrOwnHairdresser(req, res, next) {
   return next(AppError.forbidden());
 }
 
+export function isAdminOrHairdresser(req, res, next) {
+  if (!req.user) return next(AppError.forbidden());
+  if (req.user.role === 'admin' || req.user.role === 'coiffeur') return next();
+  
+  return next(AppError.forbidden());
+}
+
 function check(field, value) {
   return (req, res, next) => {
     if (!req.user) return next(AppError.forbidden());
