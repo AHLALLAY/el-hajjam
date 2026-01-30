@@ -5,8 +5,25 @@ import { isAdmin, isAdminOrOwnHairdresser } from '../middlewares/userMiddleware.
 
 const router = express.Router();
 
-router.get('/hairdressers', isAuthenticated, isAdmin, userController.getHairdressers);
-router.get('/hairdresser/:id', isAuthenticated, isAdminOrOwnHairdresser, userController.getHairdresserById);
-router.post('/hairdresser', isAuthenticated, isAdmin, userController.createHairdresser);
+router.get(
+    '/hairdressers',
+    isAuthenticated,
+    isAdmin,
+    userController.getHairdressers
+);
+
+router.get(
+    '/hairdresser/:id',
+    isAuthenticated,
+    isAdminOrOwnHairdresser,
+    userController.getHairdresserById
+);
+
+router.post(
+    '/hairdresser',
+    isAuthenticated,
+    isAdmin,
+    userController.createHairdresser
+);
 
 export default router;
