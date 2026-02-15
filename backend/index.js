@@ -5,6 +5,7 @@ import createDefaultAdmin from './utils/addAdmin.js';
 import userRoute from './routes/userRoute.js';
 import authRoute from './routes/authRoute.js';
 import servRoute from './routes/servRoute.js';
+import operRoute from './routes/operRoute.js';
 import TextMsg from './config/msg.js';
 import rr from './utils/returns.js';
 import cors from 'cors';
@@ -24,6 +25,7 @@ app.use(cors({
 app.use(`${API_BASE_URL}/users`, userRoute);
 app.use(`${API_BASE_URL}/auth`, authRoute);
 app.use(`${API_BASE_URL}/service`, servRoute);
+app.use(`${API_BASE_URL}/operation`, operRoute);
 
 app.get('/', (req, res) => {
     res.send('The server is running correctly');
