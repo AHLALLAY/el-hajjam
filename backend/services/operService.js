@@ -1,5 +1,6 @@
 import Operation from "../models/operation.js";
 import AppError from "../utils/appError.js";
+import cleanObject from "../utils/cleaner.js";
 
 class OperService {
     async getOperations(){
@@ -12,6 +13,11 @@ class OperService {
         if(!operationId) throw AppError.validation("operationId")
         const operation = await Operation.findById(operationId);
         return operation;
+    }
+
+    async createOperation(operationData){
+        const operation = await Operation.create(operationData);
+        return cleanObject(operation);
     }
 }
 
