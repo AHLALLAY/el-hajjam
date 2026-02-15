@@ -30,6 +30,16 @@ class ServController {
             return next(error);
         }
     }
+
+    async updateService(req, res, next) {
+        try {
+            const service = await servService.updateService(req.params.id, req.body);
+            if (!service) throw AppError.notFound("Service");
+            return rr(res, 200, true, TextMsg.itemUpdated("Service"), service);
+        } catch (error) {
+            return next(error);
+        }
+    }
 }
 
 export default new ServController();
