@@ -1,6 +1,7 @@
 import User from '../models/user.js';
 import bcrypt from 'bcryptjs';
 import AppError from '../utils/appError.js';
+import cleanObject from '../utils/cleaner.js';
 
 class UserService {
     async getHairdressers() {
@@ -34,10 +35,7 @@ class UserService {
             password: hashedPassword
         });
 
-        const userObject = user.toObject();
-        delete userObject.password;
-        delete userObject.__v;
-        return userObject;
+        return cleanObject(user);
     }
 }
 
