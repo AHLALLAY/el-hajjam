@@ -18,4 +18,10 @@ router.post('/service',
     servController.createService
 );
 
+router.put('/service/:id',
+    isAuthenticated,
+    isAdmin,
+    servController.updateService
+);
+
 export default router;
