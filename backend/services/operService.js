@@ -7,6 +7,12 @@ class OperService {
         if(operations.length === 0) throw AppError.notFound("Operations");
         return operations;
     }
+
+    async getOperationById(operationId){
+        if(!operationId) throw AppError.validation("operationId")
+        const operation = await Operation.findById(operationId);
+        return operation;
+    }
 }
 
 export default new OperService();
