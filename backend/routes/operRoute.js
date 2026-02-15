@@ -18,3 +18,18 @@ router.get(
     isAdminOrOwnHairdresser,
     OperController.getOperationById
 );
+
+router.post(
+    '/operation',
+    isAuthenticated,
+    isAdminOrOwnHairdresser,
+    OperController.createOperation
+);
+
+router.put(
+    '/operation/:id',
+    isAuthenticated,
+    isAdminOrOwnHairdresser,
+    OperController.updateOperation
+);
+
