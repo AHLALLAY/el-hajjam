@@ -12,6 +12,16 @@ class ServController {
         }
     }
 
+    async getServiceById(req, res, next) {
+        try {
+            const service = await servService.getServiceById(req.params);
+            if (!service) throw AppError.notFound("Service");
+            return rr(res, 200, true, TextMsg.getItem("Service"), service);
+        } catch (error) {
+            return next(error);
+        }
+    }
+
     async createService(req, res, next) {
         try {
             const service = await servService.createService(req.body);
