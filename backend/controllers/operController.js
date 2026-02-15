@@ -22,6 +22,15 @@ class OperController {
             return next(error);
         }
     }
+
+    async createOperation(req, res, next) {
+        try {
+            const operation = await operService.createOperation(req.body);
+            return rr(res, 201, true, TextMsg.itemCreated("Operation"), operation);
+        } catch (error) {
+            return next(error);
+        }
+    }
 }
 
 export default new OperController();
