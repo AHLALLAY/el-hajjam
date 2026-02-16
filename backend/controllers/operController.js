@@ -15,7 +15,7 @@ class OperController {
 
     async getOperationById(req, res, next) {
         try {
-            const operation = await operService.getOperationById(req.params);
+            const operation = await operService.getOperationById(req.params.id);
             if (!operation) throw new AppError.notFound("Operation");
             return rr(res, 200, true, TextMsg.getOne("Operation"), operation);
         } catch (error) {
@@ -27,6 +27,16 @@ class OperController {
         try {
             const operation = await operService.createOperation(req.body);
             return rr(res, 201, true, TextMsg.itemCreated("Operation"), operation);
+        } catch (error) {
+            return next(error);
+        }
+    }
+
+    async getOperationByHairdresser(req, res, next) {
+        try {
+            const operations = await operService.getOperationByHairdresser(req.params.id);
+            if (!operations) throw new AppError.notFound("Operations");
+            return rr(res, 200, true, TextMsg.getListe("Operations"), operations);
         } catch (error) {
             return next(error);
         }
