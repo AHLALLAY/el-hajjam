@@ -3,22 +3,30 @@ import AppError from "../utils/appError.js";
 import cleanObject from "../utils/cleaner.js";
 
 class OperService {
-    async getOperations(){
+    async getOperations() {
         const operations = await Operation.find();
-        if(operations.length === 0) throw AppError.notFound("Operations");
-        return operations;
+        if (operations.length === 0) throw AppError.notFound("Operations");
+        return operations.map(op => cleanObject(op));
     }
 
-    async getOperationById(operationId){
-        if(!operationId) throw AppError.validation("operationId")
+    async getOperationById(operationId) {
+        if (!operationId) throw AppError.validation("operationId");
         const operation = await Operation.findById(operationId);
-        return operation;
+        if (!operation) throw AppError.notFound("Operation");
+        return cleanObject(operation);
     }
 
-    async createOperation(operationData){
+    async createOperation(operationData) {
         const operation = await Operation.create(operationData);
         return cleanObject(operation);
     }
+
+    async getOperationByHairdresser(hairdresserId) {
+        const operations = await Operation.find({ hairdresserId });
+        if (operations.length === 0) throw AppError.notFound("Operations");
+        return operations.map(op => cleanObject(op));
+    }
+
 }
 
 export default new OperService();
