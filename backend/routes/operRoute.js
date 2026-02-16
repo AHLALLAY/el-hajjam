@@ -1,7 +1,7 @@
 import express from 'express';
-import { isAuthenticated } from '../middlewares/authMiddleware';
-import { isAdmin, isAdminOrOwnHairdresser } from '../middlewares/userMiddleware';
-import operController from '../controllers/operController.js';
+import { isAuthenticated } from '../middlewares/authMiddleware.js';
+import { isAdmin, isAdminOrOwnHairdresser } from '../middlewares/userMiddleware.js';
+import OperController from '../controllers/operController.js';
 
 
 const router = express.Router();
@@ -27,10 +27,11 @@ router.post(
     OperController.createOperation
 );
 
-router.put(
-    '/operation/:id',
-    isAuthenticated,
-    isAdminOrOwnHairdresser,
-    OperController.updateOperation
-);
+// router.put(
+//     '/operation/:id',
+//     isAuthenticated,
+//     isAdminOrOwnHairdresser,
+//     OperController.updateOperation
+// );
 
+export default router;

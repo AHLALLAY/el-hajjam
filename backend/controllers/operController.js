@@ -1,6 +1,6 @@
-import operService from "../services/operService";
+import operService from "../services/operService.js";
 import TextMsg from "../config/msg.js";
-import rr from "../utils/returns";
+import rr from "../utils/returns.js";
 import AppError from "../utils/appError.js";
 
 class OperController {
