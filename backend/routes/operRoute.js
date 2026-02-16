@@ -1,7 +1,7 @@
 import express from 'express';
 import { isAuthenticated } from '../middlewares/authMiddleware';
 import { isAdmin, isAdminOrOwnHairdresser } from '../middlewares/userMiddleware';
-import { OperController } from '../controllers/operController.js';
+import operController from '../controllers/operController.js';
 
 
 const router = express.Router();
