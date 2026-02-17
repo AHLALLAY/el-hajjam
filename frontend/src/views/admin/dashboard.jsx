@@ -1,10 +1,17 @@
+import Card from "../../components/ui/card";
 
 
 function Dashboard() {
     return (
-        <div className="flex justify-center items-center text-5xl font-semibold bg-slate-800 text-white min-h-screen">
-            this is admin's dashboard
-        </div>
+        <main className="bg-slate-800 min-h-screen p-4">
+            {/* statistics */}
+            <div className="flex justify-between">
+                <Card
+                    title={"operations"}
+
+                />
+            </div>
+        </main>
     );
 }
 
