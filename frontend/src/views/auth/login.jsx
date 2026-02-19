@@ -29,9 +29,8 @@ function Login() {
         <div className="min-h-screen w-full flex items-center justify-center bg-slate-900 p-4">
             <div className="w-full max-w-md">
                 <form onSubmit={loginAction} className="bg-slate-800 border border-yellow-700 rounded-xl p-8 shadow-2xl space-y-6">
-                    <div className="text-center space-y-2">
-                        <h2 className="text-3xl font-bold text-white">El Hajjame</h2>
-                        <p className="text-slate-400">Connectez-vous à votre espace</p>
+                    <div className="flex justify-center items-center">
+                        <img src="/logo.jpg" alt="logo" />
                     </div>
                     {error && <p className='text-red-500 text-sm'>{error}</p>}
                     <div className="space-y-4">
