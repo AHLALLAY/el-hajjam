@@ -1,17 +1,9 @@
-import Card from "../../components/ui/card";
-
+import Statistics from "./statistics";
+import AdminLayout from "../../layouts/adminLayout";
 
 function Dashboard() {
     return (
-        <main className="bg-slate-800 min-h-screen p-4">
-            {/* statistics */}
-            <div className="flex justify-between">
-                <Card
-                    title={"operations"}
-
-                />
-            </div>
-        </main>
+        <AdminLayout children={<Statistics />}/>
     );
 }
 
