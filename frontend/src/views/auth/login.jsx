@@ -18,7 +18,7 @@ function Login() {
         try {
             const response = await fetchEndPoint('/auth/login', 'post', { email, password });
             login(response.data);
-            navigate(`${response.data.role}/dashboard`);
+            navigate(`/${response.data.role}/dashboard`);
         } catch (err) {
             setError(err.message);
         }
