@@ -26,4 +26,11 @@ router.post(
     userController.createHairdresser
 );
 
+router.patch(
+    '/hairdresser/:id',
+    isAuthenticated,
+    isAdmin,
+    userController.updateHairdresserStatus
+);
+
 export default router;
