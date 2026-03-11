@@ -12,7 +12,7 @@ router.get('/services',
     servController.getServices
 );
 
-router.post('/service',
+router.post('/',
     isAuthenticated,
     isAdmin,
     servController.createService
