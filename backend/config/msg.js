@@ -17,6 +17,7 @@ class TextMsg {
     getListe(items) { return `Liste des ${items} récupérée`; }
     getOne(item) { return `${item} récupérée`; }
     itemCreated(item) { return `${item} créé avec succès`; }
+    itemUpdated(item) { return `${item} mis à jour avec succès`; }
 }
 
 export default new TextMsg();

@@ -37,6 +37,13 @@ class UserService {
 
         return cleanObject(user);
     }
+
+    async updateHairdresserStatus(hairdresserId, status){
+      const user = await User.findByIdAndUpdate(hairdresserId, { status }, { new: true })
+      if (!user) throw AppError.notFound("Coiffeur");
+      if (user.role !== 'coiffeur') throw AppError.forbidden();
+      return cleanObject(user);
+    }
 }
 
 export default new UserService();
