@@ -9,7 +9,7 @@ async function fetchEndPoint(endpoint, method = "GET", body = null, token = null
 
         const headers = {};
         const methodsWithBody = ['POST', 'PUT', 'PATCH'];
-        
+
         if (methodsWithBody.includes(method.toUpperCase()) && body) {
             headers['Content-Type'] = 'application/json';
         }
@@ -25,13 +25,17 @@ async function fetchEndPoint(endpoint, method = "GET", body = null, token = null
             headers: headers,
             body: requestBody
         });
+        const data = await response.json().catch(() => ({ message: 'Unknown error' }));
 
         if (!response.ok) {
-            const errorData = await response.json().catch(() => ({ message: 'Unknown error' }));
-            throw new Error(errorData.message || `HTTP error! status: ${response.status}`);
+            const error = new Error(data.message || `HTTP error! status: ${response.status}`);
+            error.status = response.status;
+            error.data = data;
+            throw error;
+
         }
 
-        return await response.json();
+        return await data;
     } catch (err) {
         console.error('API Error:', err);
         throw err;

@@ -1,6 +1,6 @@
 import Input from '../../components/ui/input.jsx';
 import Button from '../../components/ui/button.jsx';
-import fetchEndPoint from '../../services/apiHundler.js';
+import fetchEndPoint from '../../services/apiHandler';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext.jsx';
@@ -20,7 +20,13 @@ function Login() {
             login(response.data);
             navigate(`/${response.data.role}/dashboard`);
         } catch (err) {
-            setError(err.message);
+            if (err.status === 403) {
+                navigate(`/unauthorized`);
+            } else if (err.status === 500) {
+                navigate('/server-error');
+            } else {
+                setError(err.message);
+            }
         }
     });
 
