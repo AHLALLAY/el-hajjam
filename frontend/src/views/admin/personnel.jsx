@@ -3,6 +3,8 @@ import AdminLayout from '../../layouts/adminLayout';
 import Button from '../../components/ui/button';
 import Input from '../../components/ui/input';
 import { useState } from 'react';
+import fetchEndPoint from '../../services/apiHandler';
+import { useEffect } from 'react';
 
 
 function Stuff() {
@@ -15,14 +17,58 @@ function Stuff() {
   const [address, setAddress] = useState('');
 
   const [modalStat, setModalStat] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
 
-  const showModal = () => { setModalStat(true); }
-  const hideModal = () => { setModalStat(false); }
+  const [personnel, setPersonnel] = useState([]);
+
+    const showModal = () => {
+        setError('');
+        setModalStat(true);
+    }
+  const hideModal = () => {
+    setModalStat(false);
+    personnelList();
+  }
 
   const addHairdresser = async (e) => {
     e.preventDefault();
-
+    const data = { firstName, lastName, email, password, phone, cin, address, }
+    const token = localStorage.getItem('token');
+    setLoading(true)
+    try {
+        await fetchEndPoint('/users/hairdresser', 'POST', data, token);
+        setFirstName('');
+        setLastName('');
+        setEmail('');
+        setPassword('');
+        setPhone('');
+        setCin('');
+        setAddress('');
+        hideModal();
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setLoading(false);
+    }
   }
+
+  const personnelList = async() => {
+    try {
+      setLoading(true);
+      const response = await fetchEndPoint('/users/hairdressers', 'GET', null, localStorage.getItem('token'));
+      setPersonnel(response.data);
+      setLoading(false);
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  useEffect(() => {
+    personnelList();
+  },[])
   return (
     <AdminLayout>
       <div className='flex flex-col space-y-4'>
@@ -32,14 +78,14 @@ function Stuff() {
             Nouveau personnel
           </Button>
         </div>
+        {error && <span className='text-red-400'>{error}</span>}
         <div className="flex justify-between">
-          <StuffCard
-            title={"operations"}
-            data={{ 'key': 0 }}
-          />
+          {loading ? "Chargement ..." :""}
+          <StuffCard data={personnel} onUpdate={() => personnelList()}/>
         </div>
       </div>
       <div className={modalStat ? 'fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50' : 'hidden'}>
+        {error && <span className='text-red-400'>{error}</span>}
         <form onSubmit={addHairdresser} className='border border-yellow-600 p-4 rounded-lg bg-slate-700/40'>
           <div className='flex flex-col space-y-2'>
             <div className='flex justify-between gap-2'>
@@ -114,7 +160,7 @@ function Stuff() {
           </div>
           <div className='flex flex-col space-y-2 mt-4'>
             <Button type="submit" className="bg-yellow-600 hover:bg-yellow-700 text-white w-full">
-              Ajouter
+              {loading ? "En cours ..." : "Ajouter"}
             </Button>
             <Button type="button" className="text-yellow-600 hover:text-yellow-700 w-full" onClick={hideModal}>
               Annuler
