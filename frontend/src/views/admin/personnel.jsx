@@ -31,10 +31,10 @@ function Stuff() {
     personnelList();
   }
 
+    const token = localStorage.getItem('token');
   const addHairdresser = async (e) => {
     e.preventDefault();
     const data = { firstName, lastName, email, password, phone, cin, address, }
-    const token = localStorage.getItem('token');
     setLoading(true)
     try {
         await fetchEndPoint('/users/hairdresser', 'POST', data, token);
@@ -56,7 +56,7 @@ function Stuff() {
   const personnelList = async() => {
     try {
       setLoading(true);
-      const response = await fetchEndPoint('/users/hairdressers', 'GET', null, localStorage.getItem('token'));
+      const response = await fetchEndPoint('/users/hairdressers', 'GET', null, token);
       setPersonnel(response.data);
       setLoading(false);
     } catch (err) {
