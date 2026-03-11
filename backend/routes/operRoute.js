@@ -20,6 +20,13 @@ router.get(
     OperController.getOperationById
 );
 
+router.get(
+    '/me/:hairdresserId',
+    isAuthenticated,
+    isAdminOrOwnHairdresser,
+    OperController.getOperationByHairdresser
+);
+
 router.post(
     '/operation',
     isAuthenticated,

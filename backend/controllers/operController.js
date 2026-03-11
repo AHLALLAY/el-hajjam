@@ -34,7 +34,7 @@ class OperController {
 
     async getOperationByHairdresser(req, res, next) {
         try {
-            const operations = await operService.getOperationByHairdresser(req.params.id);
+            const operations = await operService.getOperationByHairdresser(req.params.hairdresserId);
             if (!operations) throw new AppError.notFound("Operations");
             return rr(res, 200, true, TextMsg.getListe("Operations"), operations);
         } catch (error) {
