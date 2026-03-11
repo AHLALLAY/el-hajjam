@@ -5,6 +5,7 @@ function AsideBar({ role, className = '' }) {
     const adminMenu = [
         { label: 'Dashboard', path: '/admin/dashboard' },
         { label: 'Personnel', path: '/admin/personnel' },
+        { label: 'Service', path: '/admin/service' },
     ];
     const hairdresserMenu = [
         { label: 'dashboard', path: '/hairdresser/dashboard' },
