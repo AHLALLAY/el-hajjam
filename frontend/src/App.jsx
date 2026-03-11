@@ -5,6 +5,7 @@ import NotFoundError from './views/errors/404.jsx';
 import Stuff from './views/admin/personnel.jsx';
 import ProtectedRoute from './components/security/ProtectedRoute.jsx';
 import UnAuthorizeError from './views/errors/403.jsx';
+import ServerError from './views/errors/500.jsx';
 
 function App() {
 
@@ -23,6 +24,7 @@ function App() {
 
         {/* error */}
         <Route path='/unauthorized' element={<UnAuthorizeError />}></Route>
+        <Route path="/server-error" element={<ServerError />} ></Route>
         <Route path='*' element={<NotFoundError />}></Route>
       </Routes>
     </BrowserRouter>
