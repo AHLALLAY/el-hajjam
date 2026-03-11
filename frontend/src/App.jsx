@@ -21,6 +21,9 @@ function App() {
         </Route>
 
         {/* stuff */}
+        <Route path='coiffeur' element={<ProtectedRoute allowedRoles={['coiffeur']} />}>
+          <Route path='dashboard' element={<Dashboard />}></Route>
+        </Route>
 
         {/* error */}
         <Route path='/unauthorized' element={<UnAuthorizeError />}></Route>
