@@ -24,7 +24,7 @@ class OperService {
     async getOperationByHairdresser(hairdresserId) {
         if(!hairdresserId) throw AppError.validation("hairdresserId");
         const operations = await Operation.find({ hairdresserId });
-        if (operations.length === 0) throw AppError.notFound("Operations");
+        if (operations.length === 0) return [];
         return operations.map(op => cleanObject(op));
     }
 
