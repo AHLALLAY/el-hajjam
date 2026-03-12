@@ -13,12 +13,16 @@ function Login() {
     const navigate = useNavigate();
     const { login } = useAuth();
 
-    const loginAction = (async (e) => {
+    const loginAction = async (e) => {
         e.preventDefault();
         try {
             const response = await fetchEndPoint('/auth/login', 'post', { email, password });
             login(response.data);
-            navigate(`/${response.data.role}/dashboard`);
+            if (response.data.role === 'coiffeur') {
+                navigate('/hairdresser/dashboard');
+            } else {
+                navigate(`/${response.data.role}/dashboard`);
+            }
         } catch (err) {
             if (err.status === 403) {
                 navigate(`/unauthorized`);
@@ -28,7 +32,7 @@ function Login() {
                 setError(err.message);
             }
         }
-    });
+    };
 
     return (
         <div className="min-h-screen w-full flex flex-col items-center justify-center gap-4 bg-slate-900 p-4">
