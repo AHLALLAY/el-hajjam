@@ -1,9 +1,9 @@
-import Statistics from "./statistics";
-import AdminLayout from "../../layouts/hairdresserLayout";
+import Operations from "./operations";
+import HairdresserLayout from "../../layouts/hairdresserLayout";
 
 function Dashboard() {
     return (
-        <AdminLayout children={<Statistics />}/>
+        <HairdresserLayout children={<Operations />}/>
     );
 }
 
