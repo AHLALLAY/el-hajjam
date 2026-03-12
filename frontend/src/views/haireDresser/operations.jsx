@@ -13,7 +13,7 @@ function Operations() {
 
 
     const [error, setError] = useState('');
-    const [loading, setLoading] = useState('');
+    const [loading, setLoading] = useState(false);
 
     const [modalStat, setModalStat] = useState(false);
     const [operation, setOperation] = useState([]);
@@ -34,9 +34,13 @@ function Operations() {
         e.preventDefault();
         const data = { serviceId, amountReceived, hairdresserId:user.id };
         setLoading(true);
+        setError('');
         try {
             await fetchEndPoint('/operation/operation', 'POST', data, token);
             setLoading(false);
+            setServiceId('');
+            setAmountReceived('');
+            hideModal();
         } catch (err) {
             setError(err.message);
         }
@@ -50,6 +54,9 @@ function Operations() {
             setLoading(true);
             const response = await fetchEndPoint(`/operation/me/${user.id}`, 'GET', null, token);
             setOperation(response.data);
+            setServiceId('');
+            setAmountReceived('');
+            setHairdresserId('');
             setLoading(false);
         } catch (err) {
             setError(err.message);
