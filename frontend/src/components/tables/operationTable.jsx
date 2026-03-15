@@ -1,4 +1,5 @@
-function OperationCard({ data, className = '' }) {
+function OperationTable({ data, className = '' }) {
+    console.log(data);
     const list = Array.isArray(data) ? data : [];
     return (
         <div className={className}>
@@ -30,4 +31,4 @@ function OperationCard({ data, className = '' }) {
     );
 }
 
-export default OperationCard;
+export default OperationTable;
