@@ -29,8 +29,8 @@ function StuffCard({ data, className = '', onUpdate }) {
     const token = localStorage.getItem('token');
     try {
       await fetchEndPoint(`/users/hairdresser/${id}`, 'PATCH', status, token);
-        onUpdate();
-        setError('');
+      onUpdate();
+      setError('');
     } catch (err) {
       setError(err?.message ?? 'Erreur pendant la mise à jour');
     }
@@ -39,7 +39,7 @@ function StuffCard({ data, className = '', onUpdate }) {
   if (!data || !Array.isArray(data)) return <p className="text-slate-400">Aucun coiffeur trouvé</p>;
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-    {error && <span className='text-red-400'>{error}</span>}
+      {error && <span className='text-red-400'>{error}</span>}
       {data.map((person) => (
         <div key={person._id} className={cardStyle}>
           <div className="flex justify-between items-start border-b border-yellow-600/60 pb-2 mb-2">
@@ -53,18 +53,18 @@ function StuffCard({ data, className = '', onUpdate }) {
             <p className="truncate" title={person.phone}>{person.phone}</p>
             <p className="truncate" title={person.address}>{person.address}</p>
           </div>
-            <div className="flex justify-between items-center gap-2 mt-3 flex-wrap">
-              {person.status === 'actif' && (
-                <>
-                  <Button type='button' className="px-3 py-1.5 text-sm bg-red-600 hover:bg-red-700 text-white" onClick={() => { updateStats(person._id, {status:"suspendu"}) }}>Suspendre</Button>
-                </>
-              )}
-              {person.status === 'suspendu' && (
-                <>
-                  <Button type='button' className="px-3 py-1.5 text-sm bg-green-600 hover:bg-green-700 text-white" onClick={() => { updateStats(person._id, {status:"actif"}) }}>Activer</Button>
-                </>
-              )}
-            </div>
+          <div className="flex justify-between items-center gap-2 mt-3 flex-wrap">
+            {person.status === 'actif' && (
+              <>
+                <Button type='button' className="px-3 py-1.5 text-sm bg-red-600 hover:bg-red-700 text-white" onClick={() => { updateStats(person._id, { status: "suspendu" }) }}>Suspendre</Button>
+              </>
+            )}
+            {person.status === 'suspendu' && (
+              <>
+                <Button type='button' className="px-3 py-1.5 text-sm bg-green-600 hover:bg-green-700 text-white" onClick={() => { updateStats(person._id, { status: "actif" }) }}>Activer</Button>
+              </>
+            )}
+          </div>
         </div>
       ))}
     </div>
