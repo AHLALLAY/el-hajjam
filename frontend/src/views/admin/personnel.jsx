@@ -22,30 +22,30 @@ function Stuff() {
 
   const [personnel, setPersonnel] = useState([]);
 
-    const showModal = () => {
-        setError('');
-        setModalStat(true);
-    }
+  const showModal = () => {
+    setError('');
+    setModalStat(true);
+  }
   const hideModal = () => {
     setModalStat(false);
     personnelList();
   }
 
-    const token = localStorage.getItem('token');
+  const token = localStorage.getItem('token');
   const addHairdresser = async (e) => {
     e.preventDefault();
     const data = { firstName, lastName, email, password, phone, cin, address, }
     setLoading(true)
     try {
-        await fetchEndPoint('/users/hairdresser', 'POST', data, token);
-        setFirstName('');
-        setLastName('');
-        setEmail('');
-        setPassword('');
-        setPhone('');
-        setCin('');
-        setAddress('');
-        hideModal();
+      await fetchEndPoint('/users/hairdresser', 'POST', data, token);
+      setFirstName('');
+      setLastName('');
+      setEmail('');
+      setPassword('');
+      setPhone('');
+      setCin('');
+      setAddress('');
+      hideModal();
     } catch (err) {
       setError(err.message);
     } finally {
@@ -53,7 +53,7 @@ function Stuff() {
     }
   }
 
-  const personnelList = async() => {
+  const personnelList = async () => {
     try {
       setLoading(true);
       const response = await fetchEndPoint('/users/hairdressers', 'GET', null, token);
@@ -68,7 +68,7 @@ function Stuff() {
 
   useEffect(() => {
     personnelList();
-  },[])
+  }, [])
   return (
     <AdminLayout>
       <div className='flex flex-col space-y-4'>
@@ -80,8 +80,8 @@ function Stuff() {
         </div>
         {error && <span className='text-red-400'>{error}</span>}
         <div className="flex justify-between">
-          {loading ? "Chargement ..." :""}
-          <StuffCard data={personnel} onUpdate={() => personnelList()}/>
+          {loading ? "Chargement ..." : ""}
+          <StuffCard data={personnel} onUpdate={() => personnelList()} />
         </div>
       </div>
       <div className={modalStat ? 'fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50' : 'hidden'}>

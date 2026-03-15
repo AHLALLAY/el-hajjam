@@ -3,7 +3,7 @@ import AdminLayout from "../../layouts/adminLayout";
 
 function Dashboard() {
     return (
-        <AdminLayout children={<Statistics />}/>
+        <AdminLayout children={<Statistics />} />
     );
 }
 
