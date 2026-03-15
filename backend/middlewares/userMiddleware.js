@@ -4,7 +4,7 @@ export function isAdminOrOwnHairdresser(req, res, next) {
   if (!req.user) return next(AppError.forbidden());
   if (req.user.role === 'admin') return next();
   if (req.user.role === 'coiffeur') {
-    const requestedId = req.params.id;
+    const requestedId = req.params.hairdresserId;
     const ownId = req.user._id?.toString() ?? req.user.id;
     if (requestedId === ownId) return next();
   }
