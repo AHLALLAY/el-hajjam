@@ -1,4 +1,4 @@
-function StatsCard({ title, className='', data}) {
+function StatsCard({ title, className = '', data }) {
     const defaultStyle = `border-2 border-yellow-700 p-4 bg-white/30 w-48 h-48 ${className}`;
     return (
         <div className={defaultStyle}>
