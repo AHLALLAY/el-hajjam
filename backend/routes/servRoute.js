@@ -5,23 +5,17 @@ import { isAdmin, isAdminOrHairdresser } from '../middlewares/userMiddleware.js'
 
 const router = express.Router();
 
-
-router.get('/services',
-    isAuthenticated,
-    isAdminOrHairdresser,
-    servController.getServices
-);
-
 router.post('/',
     isAuthenticated,
     isAdmin,
     servController.createService
 );
 
-router.put('/service/:id',
+router.get('/',
     isAuthenticated,
-    isAdmin,
-    servController.updateService
+    isAdminOrHairdresser,
+    servController.getServices
 );
+
 
 export default router;

@@ -1,44 +1,37 @@
-import express from 'express';
-import { isAuthenticated } from '../middlewares/authMiddleware.js';
-import { isAdmin, isAdminOrOwnHairdresser } from '../middlewares/userMiddleware.js';
-import OperController from '../controllers/operController.js';
+import express from "express";
+import { isAuthenticated } from "../middlewares/authMiddleware.js";
+import { isAdmin, isAdminOrOwnHairdresser } from "../middlewares/userMiddleware.js";
+import OperController from "../controllers/operController.js";
 
 
 const router = express.Router();
 
 router.get(
-    '/operations',
-    isAuthenticated,
-    isAdmin,
-    OperController.getOperations
+  "/",
+  isAuthenticated,
+  isAdmin,
+  OperController.getOperations,
 );
 
 router.get(
-    '/operation/:id',
-    isAuthenticated,
-    isAdminOrOwnHairdresser,
-    OperController.getOperationById
-);
-
-router.get(
-    '/me/:hairdresserId',
-    isAuthenticated,
-    isAdminOrOwnHairdresser,
-    OperController.getOperationByHairdresser
+  "/hairdresser/:hairdresserId",
+  isAuthenticated,
+  isAdminOrOwnHairdresser,
+  OperController.listOperationsByHairdresser,
 );
 
 router.post(
-    '/operation',
-    isAuthenticated,
-    isAdminOrOwnHairdresser,
-    OperController.createOperation
+  "/hairdresser/:hairdresserId",
+  isAuthenticated,
+  isAdminOrOwnHairdresser,
+  OperController.createOperation,
 );
 
-// router.put(
-//     '/operation/:id',
-//     isAuthenticated,
-//     isAdminOrOwnHairdresser,
-//     OperController.updateOperation
-// );
+router.get(
+  "/summary",
+  isAuthenticated,
+  isAdmin,
+  OperController.getOperationsSummary,
+);
 
 export default router;

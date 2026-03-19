@@ -24,8 +24,8 @@ app.use(cors({
 
 app.use(`${API_BASE_URL}/users`, userRoute);
 app.use(`${API_BASE_URL}/auth`, authRoute);
-app.use(`${API_BASE_URL}/service`, servRoute);
-app.use(`${API_BASE_URL}/operation`, operRoute);
+app.use(`${API_BASE_URL}/services`, servRoute);
+app.use(`${API_BASE_URL}/operations`, operRoute);
 
 app.get('/', (req, res) => {
     res.send('The server is running correctly');
