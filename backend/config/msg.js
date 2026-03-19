@@ -18,6 +18,8 @@ class TextMsg {
     getOne(item) { return `${item} récupérée`; }
     itemCreated(item) { return `${item} créé avec succès`; }
     itemUpdated(item) { return `${item} mis à jour avec succès`; }
+
+    resume() { return "La résumée est généré"; }
 }
 
 export default new TextMsg();
