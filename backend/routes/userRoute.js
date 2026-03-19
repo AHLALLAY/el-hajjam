@@ -13,21 +13,21 @@ router.get(
 );
 
 router.get(
-    '/hairdresser/:id',
+    '/hairdressers/:id',
     isAuthenticated,
     isAdminOrOwnHairdresser,
     userController.getHairdresserById
 );
 
 router.post(
-    '/hairdresser',
+    '/hairdressers',
     isAuthenticated,
     isAdmin,
     userController.createHairdresser
 );
 
 router.patch(
-    '/hairdresser/:id',
+    '/hairdressers/:id',
     isAuthenticated,
     isAdmin,
     userController.updateHairdresserStatus
