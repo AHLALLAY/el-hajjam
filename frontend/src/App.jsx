@@ -1,44 +1,47 @@
-import { Routes, Route, BrowserRouter } from "react-router-dom";
-import Login from "./views/auth/login.jsx";
-import AdminDashboard from "./views/admin/dashboard.jsx";
-import HairdresserDashboard from "./views/hairDresser/dashboard.jsx";
-import NotFoundError from "./views/errors/404.jsx";
-import Stuff from "./views/admin/personnel.jsx";
-import ProtectedRoute from "./components/security/ProtectedRoute.jsx";
-import UnAuthorizeError from "./views/errors/403.jsx";
-import ServerError from "./views/errors/500.jsx";
-import Operations from "./views/hairDresser/operations.jsx";
-import Services from "./views/admin/Services.jsx";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Login from "./views/auth/login";
+import AdminDashboard from "./views/admin/dashboard";
+import HairdresserDashboard from "./views/hairdresser/dashboard";
+import RouteProtector from "./components/security/routeProtector";
+import UnAuthorizeError from "./views/error/403";
+import AdminOperation from "./views/admin/operation";
+import HairdresserOperation from "./views/hairdresser/operation";
+import Service from "./views/admin/service";
+import Hairdresser from "./views/admin/hairdresser";
+import ServerError from "./views/error/500";
+import NotFoundError from "./views/error/404";
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
+        {/* index */}
         <Route path="/" index element={<Login />}></Route>
 
         {/* admin */}
         <Route
           path="admin"
-          element={<ProtectedRoute allowedRoles={["admin"]} />}
+          element={<RouteProtector allowedRole={["admin"]} />}
         >
-          <Route path="dashboard" element={<AdminDashboard />}></Route>
-          <Route path="personnel" element={<Stuff />}></Route>
-          <Route path="service" element={<Services />}></Route>
+          <Route path="dashboard" element={<AdminDashboard />} />
+          <Route path="operations" element={<AdminOperation />} />
+          <Route path="hairdresser" element={<Hairdresser />} />
+          <Route path="service" element={<Service />} />
         </Route>
 
-        {/* stuff */}
+        {/* hairdresser */}
         <Route
           path="hairdresser"
-          element={<ProtectedRoute allowedRoles={["coiffeur"]} />}
+          element={<RouteProtector allowedRole={["coiffeur"]} />}
         >
-          <Route path="dashboard" element={<HairdresserDashboard />}></Route>
-          <Route path="me/operations" element={<Operations />}></Route>
+          <Route path="dashboard" element={<HairdresserDashboard />} />
+          <Route path="me/operations" element={<HairdresserOperation />} />
         </Route>
 
         {/* error */}
-        <Route path="/unauthorized" element={<UnAuthorizeError />}></Route>
-        <Route path="/server-error" element={<ServerError />}></Route>
-        <Route path="*" element={<NotFoundError />}></Route>
+        <Route path="/unauthorized" element={<UnAuthorizeError />} />
+        <Route path="/server-error" element={<ServerError />} />
+        <Route path="*" element={<NotFoundError />} />
       </Routes>
     </BrowserRouter>
   );
