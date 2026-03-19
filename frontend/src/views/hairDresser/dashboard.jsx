@@ -1,66 +1,18 @@
-import { useEffect, useState } from "react";
-import fetchEndPoint from "../../services/apiHandler";
-import HairdresserLayout from "../../layouts/hairdresserLayout";
-
-function Dashboard() {
-  const [error, setError] = useState("");
-  const [loading, setLoading] = useState(false);
-  const [operations, setOperations] = useState([]);
-
-  const token = localStorage.getItem("token");
-  const user = JSON.parse(localStorage.getItem("user"));
-  const userId = user?.id ?? user?._id;
-
-  const getOperations = async () => {
-    try {
-      setError("");
-      setLoading(true);
-      const response = await fetchEndPoint(
-        `/operation/me/${userId}`,
-        "GET",
-        null,
-        token,
-      );
-      console.log(response);
-      setOperations(response);
-      setLoading(false);
-    } catch (err) {
-      setError(err.message);
-    } finally {
-      setLoading(false);
-    }
-  };
-  useEffect(() => {
-    getOperations();
-  }, []);
+import Layout from "../../layouts/layout";
+import StatisticsCard from "../../components/cards/hairdresser/statisticsCard";
+function HairdresserDashboard() {
   return (
-    <HairdresserLayout>
-      <div>
-        <div className="flex w-full">
-          <h1>Tableau de board</h1>
-        </div>
-        <div>
-          <table>
-            <thead>
-              <tr>
-                <td>Service</td>
-                <td>Montant Aquis</td>
-                <td>Coiffeur</td>
-              </tr>
-            </thead>
-            <tbody>
-              {/* {operations.map((op) => (
-              <tr>
-              <td>{}</td>
-              <td>{}</td>
-                <td>{}</td>
-              </tr>
-              ))} */}
-            </tbody>
-          </table>
-        </div>
+    <Layout role="coiffeur">
+      <div className="p-4 flex justify-between items-center mt-6 mb-10">
+        <h1 className="text-3xl font-bold tracking-tight text-yellow-600">
+          Tableau de bord
+        </h1>
       </div>
-    </HairdresserLayout>
-  );}
+      <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
+        <StatisticsCard />
+      </div>
+    </Layout>
+  );
+}
 
-export default Dashboard;
+export default HairdresserDashboard;
