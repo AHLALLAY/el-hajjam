@@ -3,25 +3,6 @@ import rr from "../utils/returns.js";
 import TextMsg from "../config/msg.js";
 
 class ServController {
-    async getServices(req, res, next) {
-        try {
-            const services = await servService.getServices();
-            return rr(res, 200, true, TextMsg.getListe("services"), services);
-        } catch (error) {
-            return next(error);
-        }
-    }
-
-    async getServiceById(req, res, next) {
-        try {
-            const service = await servService.getServiceById(req.params);
-            if (!service) throw AppError.notFound("Service");
-            return rr(res, 200, true, TextMsg.getItem("Service"), service);
-        } catch (error) {
-            return next(error);
-        }
-    }
-
     async createService(req, res, next) {
         try {
             const service = await servService.createService(req.body);
@@ -31,11 +12,10 @@ class ServController {
         }
     }
 
-    async updateService(req, res, next) {
+    async getServices(req, res, next) {
         try {
-            const service = await servService.updateService(req.params.id, req.body);
-            if (!service) throw AppError.notFound("Service");
-            return rr(res, 200, true, TextMsg.itemUpdated("Service"), service);
+            const services = await servService.getServices();
+            return rr(res, 200, true, null, services);
         } catch (error) {
             return next(error);
         }
