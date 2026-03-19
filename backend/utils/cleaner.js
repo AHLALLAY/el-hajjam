@@ -7,9 +7,7 @@
 
 function cleanObject(obj) {
     const newObject = obj.toObject();
-    delete newObject._id;
     delete newObject.__v;
-    delete newObject.createdAt;
     delete newObject.updatedAt;
 
     if(newObject.password) delete newObject.password;
