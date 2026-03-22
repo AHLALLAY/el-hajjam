@@ -17,7 +17,7 @@ function HairdresserCard({ data, onUpdate }) {
   if (!data || data.length === 0)
     return (
       <p className="text-slate-400 text-center py-8 rounded-xl bg-slate-800/50 border border-slate-600">
-        Vous n'avez pas encore les coiffeurs
+        Vous n'avez pas encore de coiffeurs
       </p>
     );
   return (

@@ -19,7 +19,7 @@ class TextMsg {
     itemCreated(item) { return `${item} créé avec succès`; }
     itemUpdated(item) { return `${item} mis à jour avec succès`; }
 
-    resume() { return "La résumée est généré"; }
+    resume() { return "Le résumé a été généré avec succès"; }
 }
 
 export default new TextMsg();

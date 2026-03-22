@@ -2,7 +2,7 @@ function ServiceTable({ data }) {
   if (!data || data.length === 0) {
     return (
       <p className="text-slate-300 text-center py-8">
-        Aucune service pour le moment.
+        Aucun service pour le moment.
       </p>
     );
   }
