@@ -14,6 +14,7 @@ function Layout({ role = "admin", children }) {
   const hairdresserMenu = [
     { label: "Dashboard", path: "/hairdresser/dashboard" },
     { label: "Opérations", path: "/hairdresser/me/operations" },
+    { label: "Congès", path: "/hairdresser/me/holedays" },
   ];
 
   const Logout = () => {
