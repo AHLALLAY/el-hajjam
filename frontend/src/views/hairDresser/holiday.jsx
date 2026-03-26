@@ -3,7 +3,7 @@ import Layout from "../../layouts/layout";
 import Input from "../../components/ui/input";
 import Button from "../../components/ui/button";
 
-function Holeday() {
+function Holiday() {
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
 
@@ -88,7 +88,7 @@ function Holeday() {
             </Button>
             <Button
               type="button"
-              className="w-full border border-yellow-600 text-yellow-600 hover:bg-yellow-700/20 bg-transparent"
+              className="text-yellow-600 hover:bg-yellow-600/30 hover:text-white/60 w-full"
               onClick={() => {
                 setShowModal(false);
               }}
@@ -102,4 +102,4 @@ function Holeday() {
   );
 }
 
-export default Holeday;
+export default Holiday;

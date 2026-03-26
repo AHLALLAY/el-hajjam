@@ -10,7 +10,7 @@ import Service from "./views/admin/service";
 import Hairdresser from "./views/admin/hairdresser";
 import ServerError from "./views/error/500";
 import NotFoundError from "./views/error/404";
-import Holeday from "./views/hairdresser/holeday";
+import Holiday from "./views/hairdresser/holiday";
 
 function App() {
   return (
@@ -37,7 +37,7 @@ function App() {
         >
           <Route path="dashboard" element={<HairdresserDashboard />} />
           <Route path="me/operations" element={<HairdresserOperation />} />
-          <Route path="me/holedays" element={<Holeday />} />
+          <Route path="me/holidays" element={<Holiday />} />
         </Route>
 
         {/* error */}
