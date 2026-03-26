@@ -184,7 +184,7 @@ function Hairdresser() {
             </Button>
             <Button
               type="button"
-              className="text-yellow-600 hover:bg-yellow-700 w-full"
+              className="text-yellow-600 hover:bg-yellow-600/30 hover:text-white/60 w-full"
               onClick={() => {
                 setShowModal(false);
               }}

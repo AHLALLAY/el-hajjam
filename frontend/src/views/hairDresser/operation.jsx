@@ -162,7 +162,7 @@ function Operation() {
             </Button>
             <Button
               type="button"
-              className="w-full border border-yellow-600 text-yellow-600 hover:bg-yellow-700/20 bg-transparent"
+              className="text-yellow-600 hover:bg-yellow-700 w-full"
               onClick={() => {
                 setShowModal(false);
               }}
