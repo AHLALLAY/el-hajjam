@@ -31,29 +31,44 @@ L'application doit être **performante**, **sécurisée**, **scalable** et prép
 - **Node.js** (version 18.x ou supérieure)
 - **npm** ou **yarn** (gestionnaire de paquets)
 - **Git** (contrôle de version)
-- **Docker** et **Docker Compose** (pour la conteneurisation)
 - **MongoDB** (localement ou via MongoDB Atlas)
+- **Docker** et **Docker Compose** *(non requis pour l’instant — conteneurisation prévue dans une prochaine mise à jour du dépôt)*
 - **Un éditeur de code** (VS Code recommandé)
 
 ### Installation
 
 1. **Cloner le dépôt**
    ```bash
-   git clone https://github.com/AHLALLAY/el-hajjam.git
+   git clone git@github.com:AHLALLAY/el-hajjam.git
    cd el-hajjam
    ```
 
 2. **Installer les dépendances**
    ```bash
-   # Frontend
-   cd v1/frontend
+   cd backend
+   npm install
+
+   cd ../frontend
    npm install
    ```
 
-3. **Lancer l'application en mode développement**
+3. **Configurer les variables d’environnement**  
+   À la racine du dépôt (depuis `frontend/`, faire d’abord `cd ..`) :
    ```bash
-   # Frontend
-   cd v1/frontend
+   cp backend/.env.example backend/.env
+   cp frontend/.env.example frontend/.env
+   ```
+   Puis ouvrir chaque `.env` et renseigner les valeurs (URI MongoDB, origine CORS, etc.).  
+   *Sous Windows PowerShell :* `Copy-Item backend/.env.example backend/.env` et `Copy-Item frontend/.env.example frontend/.env`.
+
+4. **Lancer l’application en mode développement**
+   ```bash
+   # Terminal 1 — API
+   cd backend
+   npm run dev
+
+   # Terminal 2 — interface React
+   cd frontend
    npm run dev
    ```
 
@@ -61,32 +76,22 @@ L'application doit être **performante**, **sécurisée**, **scalable** et prép
 
 ```
 el-hajjam/
-├── README.md                     # Ce fichier
-└── v1/
-    ├── backend/                  # Application Node.js/Express
-    │   ├── controllers/          # Contrôleurs de l'API
-    │   ├── databases/            # Configuration MongoDB
-    │   ├── models/               # Modèles Mongoose
-    │   ├── services/             # Services métier
-    │   ├── middlewares/          # Middlewares Express
-    │   ├── utils/                # Utilitaires
-    │   └── index.js              # Point d'entrée du serveur
-    ├── docs/                     # Documentation du projet
-    │   └── cahier-des-charges/   # Cahier des charges
-    └── frontend/                 # Application React (à venir)
+├── README.md
+├── docs/
+│   └── cahier-des-charges/       # Cahier des charges (PDF)
+├── backend/                      # API Node.js / Express
+│   ├── controllers/
+│   ├── databases/
+│   ├── models/
+│   ├── services/
+│   ├── middlewares/
+│   ├── routes/
+│   ├── utils/
+│   └── index.js
+└── frontend/                     # Application React (Vite)
+    └── src/
 ```
 
-## 📚 Documentation
-
-La documentation complète est disponible dans le dossier `v1/docs/` :
-
-- **[Documentation principale](./v1/docs/readme.md)** - Vue d'ensemble et navigation
-- **[Cahier des charges](./v1/docs/cahier-des-charges/readme.tex)** - Version LaTeX complète
-- **[Spécifications fonctionnelles](./v1/docs/specifications/)** - Fonctionnalités et user stories
-- **[Schéma MongoDB](./v1/docs/data/schema-mongodb.md)** - Modèle de données
-- **[Documentation API](./v1/docs/technical/api-documentation.md)** - Architecture REST
-- **[Politique de sécurité](./v1/docs/technical/security.md)** - Sécurité et RGPD
-- **[Stratégie de tests](./v1/docs/technical/tests-strategy.md)** - Tests unitaires, intégration, E2E
 
 ## 🎯 Fonctionnalités principales
 
@@ -105,7 +110,7 @@ La documentation complète est disponible dans le dossier `v1/docs/` :
 - Vue globale admin
 - Génération de rapports (PDF/Excel)
 
-### 📅 Gestion des Congés
+### 📅 Gestion des congés
 - Demande de congés (régulier/exceptionnel)
 - Approbation par l'admin
 
@@ -120,7 +125,7 @@ La documentation complète est disponible dans le dossier `v1/docs/` :
 - **Vite** - Build tool
 - **Tailwind CSS** - Framework CSS
 
-### Backend (à venir)
+### Backend
 - **Node.js** - Runtime JavaScript
 - **Express.js** - Framework web
 - **MongoDB** - Base de données NoSQL
@@ -128,9 +133,8 @@ La documentation complète est disponible dans le dossier `v1/docs/` :
 - **JWT** - Authentification
 
 ### DevOps
-- **Docker** - Conteneurisation
-- **Docker Compose** - Orchestration
-- **GitHub Actions** - CI/CD
+- **Git** — contrôle de version  
+- **Docker**, **Docker Compose** — à ajouter ultérieurement
 
 ## 📊 Statistiques du projet
 
@@ -157,8 +161,7 @@ La documentation complète est disponible dans le dossier `v1/docs/` :
 
 ## 🔗 Liens utiles
 
-- [Documentation complète](./v1/docs/readme.md)
-- [Cahier des charges PDF](./v1/docs/cahier-des-charges/salon_de_coiffeur.pdf)
+- [Cahier des charges (PDF)](./docs/cahier-des-charges/salon_de_coiffeur.pdf)
 
 ---
 
