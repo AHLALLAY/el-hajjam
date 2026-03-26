@@ -1,0 +1,10 @@
+{
+    "name": "el-hajjam",
+    "private": true,
+    "scripts": {
+      "dev": "concurrently -n backend,frontend -c   magenta,yellow \"npm run dev --prefix backend\" \"npm run dev --prefix frontend\""
+    },
+    "devDependencies": {
+      "concurrently": "^9.1.2"
+    }
+  }
