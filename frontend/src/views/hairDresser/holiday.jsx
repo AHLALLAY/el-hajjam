@@ -12,15 +12,13 @@ function Holiday() {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
-  const token = localStorage.getItem("token");
-
   const addHoliday = async (e) => {
     e.preventDefault();
 
     try {
       setError("");
       setLoading(true);
-      await fetchEndPoint("/holidays", "POST", { startDate, endDate }, token);
+      await fetchEndPoint("/holidays", "POST", { startDate, endDate });
       setStartDate("");
       setEndDate("");
       setShowModal(false);
