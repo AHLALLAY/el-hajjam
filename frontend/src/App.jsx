@@ -10,7 +10,8 @@ import Service from "./views/admin/service";
 import Hairdresser from "./views/admin/hairdresser";
 import ServerError from "./views/error/500";
 import NotFoundError from "./views/error/404";
-import Holiday from "./views/hairdresser/holiday";
+import HolidayHairdresser from "./views/hairdresser/holiday";
+import HolidayAdmin from "./views/admin/holiday";
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
           <Route path="operations" element={<AdminOperation />} />
           <Route path="hairdresser" element={<Hairdresser />} />
           <Route path="service" element={<Service />} />
+          <Route path="holiday" element={<HolidayAdmin />} />
         </Route>
 
         {/* hairdresser */}
@@ -37,7 +39,7 @@ function App() {
         >
           <Route path="dashboard" element={<HairdresserDashboard />} />
           <Route path="me/operations" element={<HairdresserOperation />} />
-          <Route path="me/holidays" element={<Holiday />} />
+          <Route path="me/holidays" element={<HolidayHairdresser />} />
         </Route>
 
         {/* error */}
