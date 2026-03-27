@@ -1,5 +1,5 @@
 import Holiday from "../models/holiday.js";
-import cleanObject from "../utils/cleaner";
+import cleanObject from "../utils/cleaner.js";
 
 class HoliService {
     async createHoliday(holidayData) {
