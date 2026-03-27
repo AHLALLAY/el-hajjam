@@ -11,6 +11,15 @@ class HoliController {
             return next(err);
         }
     }
+
+    async getHolidays(req, res, next){
+        try{
+            const holidays = await holiService.getHolidays();
+            return rr(res, 200, true, TextMsg.getListe("congès"), holidays);
+        }catch(err){
+            return next(err);
+        }
+    }
 }
 
 export default new HoliController();
