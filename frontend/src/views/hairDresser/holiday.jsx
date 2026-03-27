@@ -2,6 +2,7 @@ import { useState } from "react";
 import Layout from "../../layouts/layout";
 import Input from "../../components/ui/input";
 import Button from "../../components/ui/button";
+import fetchEndPoint from "../../services/apiHandler";
 
 function Holiday() {
   const [startDate, setStartDate] = useState("");
@@ -10,6 +11,26 @@ function Holiday() {
   const [showModal, setShowModal] = useState(false);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+
+  const token = localStorage.getItem("token");
+
+  const addHoliday = async (e) => {
+    e.preventDefault();
+
+    try {
+      setError("");
+      setLoading(true);
+      await fetchEndPoint("/holidays", "POST", { startDate, endDate }, token);
+      setStartDate("");
+      setEndDate("");
+      setShowModal(false);
+      // loadMyHoliday();
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <Layout role="coiffeur">
@@ -42,6 +63,7 @@ function Holiday() {
         }
       >
         <form
+          onSubmit={addHoliday}
           className="border border-slate-600 p-6 rounded-xl bg-slate-800 shadow-2xl shadow-black/20 max-w-lg w-full"
         >
           <div className="flex justify-between items-center mb-6 px-2 text-yellow-600 font-bold">
