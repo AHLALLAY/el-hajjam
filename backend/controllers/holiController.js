@@ -12,11 +12,30 @@ class HoliController {
         }
     }
 
-    async getHolidays(req, res, next){
-        try{
+    async getHolidays(req, res, next) {
+        try {
             const holidays = await holiService.getHolidays();
-            return rr(res, 200, true, TextMsg.getListe("congès"), holidays);
-        }catch(err){
+            return rr(res, 200, true, TextMsg.getListe("congés"), holidays);
+        } catch (err) {
+            return next(err);
+        }
+    }
+
+    async listHolidaysByHairdresser(req, res, next) {
+        try {
+            const holiday = await holiService.listHolidaysByHairdresser(req.params.hairdresserId);
+            return rr(res, 200, true, TextMsg.getListe("congés"), holiday);
+
+        } catch (err) {
+            return next(err);
+        }
+    }
+
+    async updateStats(req, res, next) {
+        try {
+            const holiday = await holiService.updateStats(req.params.id, req.body);
+            return rr(res, 200, true, TextMsg.itemUpdated("Statut de congé"), holiday);
+        } catch (err) {
             return next(err);
         }
     }
