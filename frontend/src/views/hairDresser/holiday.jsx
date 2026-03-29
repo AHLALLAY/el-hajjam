@@ -3,10 +3,14 @@ import Layout from "../../layouts/layout";
 import Input from "../../components/ui/input";
 import Button from "../../components/ui/button";
 import fetchEndPoint from "../../services/apiHandler";
+import HolidayTable from "../../components/tables/holidayTable";
+import { useEffect } from "react";
 
 function Holiday() {
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
+
+  const [myHoliday, setMyHoliday] = useState([]);
 
   const [showModal, setShowModal] = useState(false);
   const [error, setError] = useState("");
@@ -22,13 +26,24 @@ function Holiday() {
       setStartDate("");
       setEndDate("");
       setShowModal(false);
-      // loadMyHoliday();
+      loadMyHoliday();
     } catch (err) {
       setError(err.message);
     } finally {
       setLoading(false);
     }
   };
+
+  const loadMyHoliday = async () => {
+    setLoading(true);
+    const hairdresserId = JSON.parse(localStorage.getItem("user"));
+    const holidays = await fetchEndPoint(`/holidays/${hairdresserId.id}`, "GET");
+    setMyHoliday(holidays.data);
+  }
+
+  useEffect(() => {
+    loadMyHoliday();
+  }, [])
 
   return (
     <Layout role="coiffeur">
@@ -49,9 +64,7 @@ function Holiday() {
         </p>
       )}
       <div className="overflow-hidden rounded-lg border border-yellow-700/50">
-        <p className="text-slate-400 text-center py-8">
-          Fonctionnalité à venir…
-        </p>
+        <HolidayTable data={myHoliday} role={"coiffeur"} />
       </div>
       <div
         className={
