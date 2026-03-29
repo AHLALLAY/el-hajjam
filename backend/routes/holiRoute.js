@@ -1,7 +1,7 @@
 import express from "express";
-import { isAuthenticated } from "../middlewares/authMiddleware.js";
-import { isAdminOrOwnHairdresser, isHairdresser } from "../middlewares/userMiddleware.js";
 import HoliController from "../controllers/holiController.js";
+import { isAuthenticated } from "../middlewares/authMiddleware.js";
+import { isAdmin, isAdminOrOwnHairdresser, isHairdresser } from "../middlewares/userMiddleware.js";
 
 const router = express.Router();
 
@@ -15,8 +15,22 @@ router.post(
 router.get(
     '/',
     isAuthenticated,
-    isAdminOrOwnHairdresser,
+    isAdmin,
     HoliController.getHolidays
+);
+
+router.get(
+    '/:hairdresserId',
+    isAuthenticated,
+    isAdminOrOwnHairdresser,
+    HoliController.listHolidaysByHairdresser
+);
+
+router.patch(
+    '/:id',
+    isAuthenticated,
+    isAdmin,
+    HoliController.updateStats
 );
 
 export default router;
