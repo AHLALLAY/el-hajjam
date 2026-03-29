@@ -11,7 +11,6 @@ function Holiday() {
 
     const loadHoliday = async () => {
         const res = await fetchEndPoint("/holidays", "GET");
-        console.log(res.data)
         setHoliday(res.data ?? []);
     };
 
@@ -30,7 +29,7 @@ function Holiday() {
                 </p>
             )}
             <div className="overflow-hidden rounded-lg border border-yellow-700/50">
-                <HolidayTable data={holiday} />
+                <HolidayTable data={holiday} onHolidayUpdated={loadHoliday} role={"admin"} />
             </div>
         </Layout>
     );

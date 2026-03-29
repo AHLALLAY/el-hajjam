@@ -10,7 +10,7 @@ function Layout({ role = "admin", children }) {
     { label: "Opérations", path: "/admin/operations" },
     { label: "Personnels", path: "/admin/hairdresser" },
     { label: "Services", path: "/admin/service" },
-    { label: "Congès", path: "/admin/holiday" },
+    { label: "Congés", path: "/admin/holiday" },
   ];
   const hairdresserMenu = [
     { label: "Dashboard", path: "/hairdresser/dashboard" },
