@@ -1,6 +1,9 @@
 # Node modules
 node_modules
 
+# prod
+dist
+
 # Fichiers .env dans frontend et backend
 .env
 
