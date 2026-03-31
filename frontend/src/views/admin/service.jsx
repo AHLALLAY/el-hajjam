@@ -46,7 +46,6 @@ function Service() {
   return (
     <Layout role="admin">
       <div className="p-4 flex justify-between items-center mt-6 mb-10">
-        <h1 className="text-2xl font-bold text-yellow-600">Services</h1>
         <Button
           className="bg-yellow-600 hover:bg-yellow-700 text-white"
           onClick={() => setShowModal(true)}

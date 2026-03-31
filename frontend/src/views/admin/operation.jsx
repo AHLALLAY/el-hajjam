@@ -67,9 +67,6 @@ function Operation() {
   }, []);
   return (
     <Layout role="admin">
-      <div className="p-4 flex justify-start mt-6 mb-6">
-        <h1 className="text-2xl font-bold text-yellow-600">Opérations</h1>
-      </div>
       {error && <p className="text-red-500">{error}</p>}
       {/* filter */}
       <div className="flex justify-between w-full">

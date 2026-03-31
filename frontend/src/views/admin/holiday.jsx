@@ -20,9 +20,6 @@ function Holiday() {
 
     return (
         <Layout role="admin">
-            <div className="p-4 flex justify-between items-center mt-6 mb-10">
-                <h1 className="text-2xl font-bold text-yellow-600">Congés</h1>
-            </div>
             {error && (
                 <p className="text-red-600 bg-red-50 border border-red-200 rounded-lg p-3 mb-4">
                     {error}
