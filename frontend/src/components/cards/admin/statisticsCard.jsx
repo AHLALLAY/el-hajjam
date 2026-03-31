@@ -4,26 +4,38 @@ import fetchEndPoint from "../../../services/apiHandler";
 function StatisticsCard() {
   const [hairdresserCount, setHairdresserCount] = useState(0);
   const [serviceCount, setServiceCount] = useState(0);
-  const [error, setError] = useState("");
+  const [hairdressersError, setHairdressersError] = useState("");
+  const [servicesError, setServicesError] = useState("");
   const [loading, setLoading] = useState(false);
 
-  const loadDashboardStatistics = async () => {
+  const loadHairdressers = async () => {
     try {
+      setHairdressersError("");
       setLoading(true);
       const hairdressersRes = await fetchEndPoint("/users/hairdressers");
       setHairdresserCount(hairdressersRes.data?.length ?? 0);
-
+    } catch (err) {
+      setHairdressersError(err.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+  const loadServices = async () => {
+    try {
+      setServicesError("");
+      setLoading(true);
       const servicesRes = await fetchEndPoint("/services");
       setServiceCount(servicesRes.data?.length ?? 0);
     } catch (err) {
-      setError(err.message);
+      setServicesError(err.message);
     } finally {
       setLoading(false);
     }
   };
 
   useEffect(() => {
-    loadDashboardStatistics();
+    loadHairdressers();
+    loadServices();
   }, []);
 
   const cardBase =
@@ -38,8 +50,8 @@ function StatisticsCard() {
         </h2>
         {loading ? (
           <p className="mt-2 text-2xl font-bold text-yellow-300">...</p>
-        ) : error ? (
-          <p className="mt-2 text-sm text-red-400">{error}</p>
+        ) : hairdressersError ? (
+          <p className="mt-2 text-sm text-red-400">{hairdressersError}</p>
         ) : (
           <p className="mt-2 text-3xl font-bold text-yellow-300">
             {hairdresserCount}
@@ -54,8 +66,8 @@ function StatisticsCard() {
         </h2>
         {loading ? (
           <p className="mt-2 text-2xl font-bold text-yellow-300">...</p>
-        ) : error ? (
-          <p className="mt-2 text-sm text-red-400">{error}</p>
+        ) : servicesError ? (
+          <p className="mt-2 text-sm text-red-400">{servicesError}</p>
         ) : (
           <p className="mt-2 text-3xl font-bold text-yellow-300">
             {serviceCount}
