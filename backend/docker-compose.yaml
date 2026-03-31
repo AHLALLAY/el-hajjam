@@ -1,0 +1,33 @@
+services:
+
+  el-hajjam-db:
+    image: mongo:7
+    restart: unless-stopped
+    volumes:
+      - mongo_data:/data/db
+    healthcheck:
+      test: ["CMD", "mongosh", "--quiet", "--eval", "db.adminCommand('ping')"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+
+  el-hajjam-api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    env_file: 
+      - .env
+    # MONGODB_URI : hôte « mongo » dans le réseau Compose. CORS : navigateur sur le port du frontend (5173 par défaut).
+    environment:
+      - MONGODB_URI=mongodb://el-hajjam-db:27017/elhajjam
+      - CORS_ORIGIN=${CORS_ORIGIN:-http://localhost:5173}
+    depends_on:
+      el-hajjam-db:
+        condition: service_healthy
+    restart: unless-stopped
+  
+volumes:
+  mongo_data:

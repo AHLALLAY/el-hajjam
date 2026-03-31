@@ -1,0 +1,11 @@
+# Si vous changez VITE_API_URL, reconstruire l’image : docker compose build --no-cache
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        VITE_API_URL: http://localhost:3000/api/v1
+    ports:
+      - "5173:3000"
+    restart: unless-stopped
