@@ -43,8 +43,8 @@ function Layout({ role = "admin", children }) {
   const closeMenu = () => setIsMenuOpen(false);
 
   return (
-    <div className="flex h-screen overflow-hidden bg-slate-900 w-full">
-      <header className="md:hidden fixed top-0 left-0 right-0 z-[60] flex items-center justify-between px-4 py-3 border-b border-yellow-700/50 bg-slate-900">
+    <div className="flex h-screen overflow-hidden bg-app w-full">
+      <header className="md:hidden fixed top-0 left-0 right-0 z-[60] flex items-center justify-between px-4 py-3 border-b border-yellow-700/50 bg-app">
         <Button
           type="button"
           onClick={() => setIsMenuOpen(true)}
@@ -82,7 +82,7 @@ function Layout({ role = "admin", children }) {
 
       <aside
         className={[
-          "fixed inset-y-0 left-0 z-50 w-48 shrink-0 border-r border-yellow-700 bg-slate-900",
+          "fixed inset-y-0 left-0 z-50 w-48 shrink-0 border-r border-yellow-700 bg-app",
           "transition-transform duration-200 ease-out",
           "md:relative md:inset-auto md:z-auto md:translate-x-0",
           isMenuOpen ? "translate-x-0" : "-translate-x-full",

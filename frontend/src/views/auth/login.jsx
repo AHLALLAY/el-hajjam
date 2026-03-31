@@ -38,17 +38,17 @@ function Login() {
   };
 
   return (
-    <div className="min-h-screen w-full flex flex-col items-center justify-center gap-4 bg-slate-900 p-4">
-      <div className="flex shrink-0 w-40 h-40 items-center justify-center">
+    <div className="min-h-screen w-full flex flex-col items-center justify-center gap-4 bg-app p-4">
+      <div className="flex shrink-0 w-56 h-56 items-center justify-center">
         <img
-          src="/logo.jpg"
+          src="/logo_.png"
           alt="El-Hajjam"
           className="w-full h-full object-contain"
         />
       </div>
       <form
         onSubmit={loginAction}
-        className="w-full max-w-md shrink-0 bg-slate-800 border border-yellow-700 rounded-xl p-6 shadow-2xl space-y-6"
+        className="w-full max-w-md shrink-0 bg-white/20 border border-yellow-700 rounded-xl p-6 shadow-2xl space-y-6"
       >
         {error && <p className="text-red-500 text-sm">{error}</p>}
         <div className="space-y-4">

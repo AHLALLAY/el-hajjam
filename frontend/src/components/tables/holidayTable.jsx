@@ -59,7 +59,7 @@ function HolidayTable({ data, onHolidayUpdated, role = "admin" }) {
                     {data.map((holiday) => (
                         <tr
                             key={holiday?._id ?? holiday?.id}
-                            className="bg-slate-800/50 hover:bg-slate-700/50 transition-colors"
+                            className="bg-white/20 hover:bg-white/30 transition-colors"
                         >
                             {isAdmin && (
                                 <td className="px-4 py-3 text-slate-200">

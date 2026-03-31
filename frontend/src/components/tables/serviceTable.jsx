@@ -19,7 +19,7 @@ function ServiceTable({ data }) {
         {data.map((service) => (
           <tr
             key={service?._id ?? service?.id}
-            className="bg-slate-800/50 hover:bg-slate-700/50 transition-colors"
+            className="bg-white/20 hover:bg-white/30 transition-colors"
           >
             <td className="px-4 py-3 text-slate-200">
               {new Date(service.createdAt).toLocaleDateString("fr-FR", {

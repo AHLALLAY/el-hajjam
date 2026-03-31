@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 
 function ServerError() {
     return (
-        <div className="flex flex-col items-center justify-center min-h-screen gap-6 bg-slate-900 p-6">
+        <div className="flex flex-col items-center justify-center min-h-screen gap-6 bg-app p-6">
             <div className="w-32 h-32 shrink-0">
                 <img src="/logo.jpg" alt="El-Hajjam" className="w-full h-full object-contain" />
             </div>

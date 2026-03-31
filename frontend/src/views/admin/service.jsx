@@ -66,7 +66,7 @@ function Service() {
       >
         <form
           onSubmit={addService}
-          className="border border-slate-600 p-6 rounded-xl bg-slate-800 shadow-2xl shadow-black/20 max-w-lg w-full"
+          className="border border-white/20 p-6 rounded-xl bg-white/20 shadow-2xl shadow-black/20 max-w-lg w-full"
         >
           <div className="flex justify-between items-center mb-6 px-2 text-yellow-600 font-bold">
             <h1 className="text-xl">Nouveau service</h1>

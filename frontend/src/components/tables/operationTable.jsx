@@ -25,7 +25,7 @@ function OperationTable({ data }) {
         {data.map((operation) => (
           <tr
             key={operation?._id ?? operation?.id}
-            className="bg-slate-800/50 hover:bg-slate-700/50 transition-colors"
+            className="bg-white/20 hover:bg-white/30 transition-colors"
           >
             <td className="px-4 py-3 text-slate-200">
               {new Date(operation.createdAt).toLocaleDateString("fr-FR", {

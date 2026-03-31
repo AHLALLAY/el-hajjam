@@ -16,7 +16,7 @@ function HairdresserCard({ data, onUpdate }) {
 
   if (!data || data.length === 0)
     return (
-      <p className="text-slate-400 text-center py-8 rounded-xl bg-slate-800/50 border border-slate-600">
+      <p className="text-slate-400 text-center py-8 rounded-xl bg-white/20 border border-white/20">
         Vous n'avez pas encore de coiffeurs
       </p>
     );
@@ -27,7 +27,7 @@ function HairdresserCard({ data, onUpdate }) {
         {data.map((hairdresser) => (
           <div
             key={hairdresser._id}
-            className="rounded-xl border border-slate-600 bg-slate-800/50 p-5 shadow-lg"
+            className="rounded-xl border border-white/20 bg-white/20 p-5 shadow-lg"
           >
             <div className="flex justify-between items-start gap-2 mb-4">
               <h2 className="text-lg font-semibold text-yellow-600 truncate">
