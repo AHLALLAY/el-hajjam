@@ -1,8 +1,8 @@
 {
-  "name": "el-hajjame-api",
+  "name": "el-hajjam-api",
   "version": "1.0.0",
   "description": "",
-  "license": "UNLICENCED",
+  "license": "UNLICENSED",
   "author": "Abderrahmane Ahlallay",
   "type": "module",
   "main": "index.js",
