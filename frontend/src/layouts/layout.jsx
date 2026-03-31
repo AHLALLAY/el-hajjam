@@ -1,27 +1,30 @@
-import { Link, useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import Button from "../components/ui/button";
 import { useAuth } from "../context/AuthContext";
-import { useState, useEffect } from "react";
 
 function Layout({ role = "admin", children }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const navigate = useNavigate();
+  const location = useLocation();
   const { logout, user } = useAuth();
 
   const adminMenu = [
-    { label: "Dashboard", path: "/admin/dashboard" },
+    { label: "Tableau de bord", path: "/admin/dashboard" },
     { label: "Opérations", path: "/admin/operations" },
     { label: "Personnels", path: "/admin/hairdresser" },
     { label: "Services", path: "/admin/service" },
     { label: "Congés", path: "/admin/holiday" },
   ];
   const hairdresserMenu = [
-    { label: "Dashboard", path: "/hairdresser/dashboard" },
+    { label: "Tableau de bord", path: "/hairdresser/dashboard" },
     { label: "Opérations", path: "/hairdresser/me/operations" },
     { label: "Congés", path: "/hairdresser/me/holidays" },
   ];
 
   const menu = role === "admin" ? adminMenu : hairdresserMenu;
+  const pageTitle =
+    menu.find((item) => item.path === location.pathname)?.label ?? "";
 
   useEffect(() => {
     if (isMenuOpen) {
@@ -112,15 +115,10 @@ function Layout({ role = "admin", children }) {
           </Button>
 
           <img
-            src="/logo.jpg"
+            src="/logo_.png"
             alt="Logo de l'application"
-            className="w-36 h-36 mt-4 md:mt-8 mb-6"
+            className="w-36 h-24 mt-4 md:mt-8 mb-6"
           />
-          <div className="flex justify-center font-semibold text-yellow-600 border-b rounded-lg border-yellow-600">
-            <p>
-              {user ? `${user.firstName} ${user.lastName}` : "Utilisateur"}
-            </p>
-          </div>
           <nav
             className="flex flex-col text-yellow-700 font-medium items-center gap-6 px-4 py-6"
             aria-label="Menu principal"
@@ -141,7 +139,18 @@ function Layout({ role = "admin", children }) {
       </aside>
 
       <main className="flex-1 min-h-0 overflow-y-auto p-6 pt-[4.5rem] md:pt-6 scrollbar-hidden">
-        {children}
+        <div className="flex items-center justify-between mb-10">
+          <h2 className="text-3xl font-bold tracking-tight text-yellow-600">
+            {pageTitle}
+          </h2>
+          <div className="flex flex-col gap-2 text-white/40">
+            <p className="text-sm font-semibold">{user?.firstName}{" "}{user?.lastName}</p>
+            <p className="text-sm font-semibold">{user?.role}</p>
+          </div>
+        </div>
+        <div>
+          {children}
+        </div>
       </main>
     </div>
   );
