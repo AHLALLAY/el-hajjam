@@ -6,7 +6,7 @@ import cleanObject from '../utils/cleaner.js';
 class UserService {
     async getHairdressers() {
         const users = await User.find({ role: 'coiffeur' }, '-password -__v');
-        if (users.length === 0) throw AppError.notFound("Coiffeurs");
+        if (users.length === 0) return []; // UX: une liste vide n'est pas une erreur
         return users;
     }
 

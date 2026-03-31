@@ -12,7 +12,7 @@ class ServService {
     
     async getServices() {
         const services = await Service.find();
-        if (services.length === 0) throw AppError.notFound("Services");
+        if (services.length === 0) return []; // UX: une liste vide n'est pas une erreur
         return services;
     }
 
