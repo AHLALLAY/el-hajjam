@@ -12,10 +12,10 @@ class ServController {
         }
     }
 
-    async getServices(req, res, next) {
+    async getAllServices(req, res, next) {
         try {
-            const services = await servService.getServices();
-            return rr(res, 200, true, null, services);
+            const services = await servService.getAllServices();
+            return rr(res, 200, true, TextMsg.getListe("services"), services);
         } catch (error) {
             return next(error);
         }

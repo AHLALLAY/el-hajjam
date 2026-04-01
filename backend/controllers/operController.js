@@ -1,25 +1,23 @@
 import operService from "../services/operService.js";
 import TextMsg from "../config/msg.js";
-import AppError from "../utils/appError.js";
 import rr from "../utils/returns.js";
 
 class OperController {
-  async getOperations(req, res, next) {
+  async getAllOperations(req, res, next) {
     try {
-      const operations = await operService.getOperations();
+      const operations = await operService.getAllOperations();
       return rr(res, 200, true, TextMsg.getListe("operations"), operations);
     } catch (error) {
       return next(error);
     }
   }
 
-  async listOperationsByHairdresser(req, res, next) {
+  async getOperationsByHairdresser(req, res, next) {
     try {
-      const operations = await operService.listOperationsByHairdresser(
+      const operations = await operService.getOperationsByHairdresser(
         req.params.hairdresserId,
       );
-      if (!operations) throw new AppError.notFound("Operations");
-      return rr(res, 200, true, TextMsg.getListe("Operations"), operations);
+      return rr(res, 200, true, TextMsg.getListe("Opérations"), operations);
     } catch (error) {
       return next(error);
     }
@@ -27,8 +25,8 @@ class OperController {
 
   async createOperation(req, res, next) {
     try {
-      const operation = await operService.createOperation(req.body);
-      return rr(res, 201, true, TextMsg.itemCreated("Operation"), operation);
+      const operation = await operService.createOperation({...req.body, hairdresserId: req.params.hairdresserId});
+      return rr(res, 201, true, TextMsg.itemCreated("Opération"), operation);
     } catch (error) {
       return next(error);
     }
@@ -36,8 +34,8 @@ class OperController {
 
   async getOperationsSummary(req, res, next) {
     try {
-      const resume = await operService.getOperationsSummary();
-      return rr(res, 200, true, TextMsg.resume(), resume);
+      const summary = await operService.getOperationsSummary();
+      return rr(res, 200, true, TextMsg.resume(), summary);
     } catch (error) {
       return next(error);
     }

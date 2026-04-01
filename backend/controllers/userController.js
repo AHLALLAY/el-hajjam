@@ -1,12 +1,12 @@
-import userService from "../services/userService.js";
 import TextMsg from "../config/msg.js";
-import rr from "../utils/returns.js";
+import userService from "../services/userService.js";
 import AppError from "../utils/appError.js";
+import rr from "../utils/returns.js";
 
 class UserController {
-    async getHairdressers(req, res, next) {
+    async getAllHairdressers(req, res, next) {
         try {
-            const users = await userService.getHairdressers();
+            const users = await userService.getAllHairdressers();
             return rr(res, 200, true, TextMsg.getListe("coiffeurs"), users);
         } catch (error) {
             return next(error);
@@ -15,7 +15,7 @@ class UserController {
 
     async getHairdresserById(req, res, next) {
         try {
-            const user = await userService.getHairdresserById(req.params.id);
+            const user = await userService.getHairdresserById(req.params.hairdresserId);
             return rr(res, 200, true, TextMsg.getOne("Coiffeur"), user);
         } catch (error) {
             return next(error);
@@ -35,7 +35,7 @@ class UserController {
         try {
             const allowedStatus = ['actif', 'inactif', 'suspendu'];
             if (!req.body.status || !allowedStatus.includes(req.body.status)) throw AppError.validation("Status");
-            const user = await userService.updateHairdresserStatus(req.params.id, req.body.status);
+            const user = await userService.updateHairdresserStatus(req.params.hairdresserId, req.body.status);
             return rr(res, 200, true, TextMsg.itemUpdated("Coiffeur"), user);
         } catch (error) {
             return next(error);
