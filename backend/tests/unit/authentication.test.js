@@ -11,10 +11,10 @@ vi.mock("jsonwebtoken", () => ({
   default: { sign: vi.fn() },
 }));
 
-import authService from "../../services/authService.js";
-import User from "../../models/user.js";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
+import User from "../../models/user.js";
+import authService from "../../services/authService.js";
 
 // authService.login appelle validation : tous les cas email / mot de passe passent par ce flux (pas de doublon avec des tests directs sur validation.js).
 // ---------------------------------------------------------------------------
