@@ -11,3 +11,10 @@ export async function isAuthenticated(req, res, next) {
         return next(AppError.unauthenticated());
     }
 }
+
+export const loginLimiter = rateLimit({
+    windowMs: 15 * 60 * 1000,
+    max: 3,
+    skipSuccessfulRequests: true, // les connexions réussies ne comptent pas
+    message: { success: false, message: 'Trop de tentatives. Réessayez dans 15 minutes.' }
+});
