@@ -39,7 +39,7 @@ const userSchema = mongoose.Schema({
     },
     status: {
         type: String,
-        enum: ['actif', 'inactif', 'suspendu'],
+        enum: ['actif', 'suspendu'],
         default: 'actif',
     },
     address: {
