@@ -10,6 +10,8 @@ import holiRoute from './routes/holiRoute.js';
 import TextMsg from './config/msg.js';
 import rr from './utils/returns.js';
 import cors from 'cors';
+import { getAbsoluteFSPath } from 'swagger-ui-dist';
+import swaggerDocument from './config/swagger.js';
 
 const app = express();
 const uri = process.env.MONGODB_URI;
@@ -22,6 +24,13 @@ app.use(cors({
     credentials: true,
     methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
 }));
+// Servir les fichiers statiques de Swagger UI
+app.use(`${API_BASE_URL}/api-docs`, express.static(getAbsoluteFSPath()));
+
+// Servir la spec JSON
+app.get(`${API_BASE_URL}/docs/swagger.json`, (req, res) => {
+    res.json(swaggerDocument);
+});
 
 app.use(`${API_BASE_URL}/users`, userRoute);
 app.use(`${API_BASE_URL}/auth`, authRoute);
