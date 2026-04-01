@@ -29,5 +29,4 @@ function check(field, value) {
 export const isAdmin = check("role", "admin");
 export const isHairdresser = check("role", "coiffeur");
 export const isActif = check("status", "actif");
-export const isInactif = check("status", "inactif");
 export const isSuspended = check("status", "suspendu");
