@@ -1,11 +1,11 @@
 /**
- * Retourne une copie "propre" d'un document Mongoose pour l'API (sans _id, __v, timestamps, password).
+ * Retourne une copie "propre" d'un document Mongoose pour l'API (sans __v, timestamps, password).
  * @param {import('mongoose').Document} obj - Document Mongoose (résultat de find, create, findByIdAndUpdate, etc.)
- * @returns {Object} Objet plain sans _id, __v, createdAt, updatedAt ni password
+ * @returns {Object} Objet plain sans __v, updatedAt et password
  * @throws {Error} Si obj n'a pas la méthode toObject (ex. objet plain)
  */
 
-function cleanObject(obj) {
+export default function cleanObject(obj) {
     const newObject = obj.toObject();
     delete newObject.__v;
     delete newObject.updatedAt;
@@ -14,5 +14,3 @@ function cleanObject(obj) {
 
     return newObject;
 }
-
-export default cleanObject;
