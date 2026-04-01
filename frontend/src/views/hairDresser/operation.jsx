@@ -21,7 +21,7 @@ function Operation() {
   const loadMyOperations = async () => {
     if (!currentUser?.id) return;
     const res = await fetchEndPoint(
-      `/operations/hairdresser/${currentUser.id}`,
+      `/operations/${currentUser.id}`,
       "GET"
     );
     setMyOperations(res.data ?? []);
@@ -45,12 +45,11 @@ function Operation() {
       e.preventDefault();
       setLoading(true);
       await fetchEndPoint(
-        `/operations/hairdresser/${currentUser.id}`,
+        `/operations/${currentUser.id}`,
         "POST",
         {
           serviceId,
           amountReceived,
-          hairdresserId: currentUser.id,
         }
       );
       setServiceId("");

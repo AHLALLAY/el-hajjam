@@ -35,10 +35,16 @@ function Holiday() {
   };
 
   const loadMyHoliday = async () => {
-    setLoading(true);
-    const hairdresserId = JSON.parse(localStorage.getItem("user"));
-    const holidays = await fetchEndPoint(`/holidays/${hairdresserId.id}`, "GET");
-    setMyHoliday(holidays.data);
+    try {
+      setLoading(true);
+      const hairdresserId = JSON.parse(localStorage.getItem("user"));
+      const holidays = await fetchEndPoint(`/holidays/${hairdresserId.id}`, "GET");
+      setMyHoliday(holidays.data);
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setLoading(false);
+    }
   }
 
   useEffect(() => {
