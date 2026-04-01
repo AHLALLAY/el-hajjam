@@ -14,7 +14,7 @@ router.post('/',
 router.get('/',
     isAuthenticated,
     isAdminOrHairdresser,
-    servController.getServices
+    servController.getAllServices
 );
 
 

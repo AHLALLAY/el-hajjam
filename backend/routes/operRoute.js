@@ -10,21 +10,7 @@ router.get(
   "/",
   isAuthenticated,
   isAdmin,
-  OperController.getOperations,
-);
-
-router.get(
-  "/hairdresser/:hairdresserId",
-  isAuthenticated,
-  isAdminOrOwnHairdresser,
-  OperController.listOperationsByHairdresser,
-);
-
-router.post(
-  "/hairdresser/:hairdresserId",
-  isAuthenticated,
-  isAdminOrOwnHairdresser,
-  OperController.createOperation,
+  OperController.getAllOperations,
 );
 
 router.get(
@@ -32,6 +18,20 @@ router.get(
   isAuthenticated,
   isAdmin,
   OperController.getOperationsSummary,
+);
+
+router.get(
+  "/:hairdresserId",
+  isAuthenticated,
+  isAdminOrOwnHairdresser,
+  OperController.getOperationsByHairdresser,
+);
+
+router.post(
+  "/:hairdresserId",
+  isAuthenticated,
+  isAdminOrOwnHairdresser,
+  OperController.createOperation,
 );
 
 export default router;

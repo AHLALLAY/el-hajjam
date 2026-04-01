@@ -9,11 +9,11 @@ router.get(
     '/hairdressers',
     isAuthenticated,
     isAdmin,
-    userController.getHairdressers
+    userController.getAllHairdressers
 );
 
 router.get(
-    '/hairdressers/:id',
+    '/hairdressers/:hairdresserId',
     isAuthenticated,
     isAdminOrOwnHairdresser,
     userController.getHairdresserById
@@ -27,7 +27,7 @@ router.post(
 );
 
 router.patch(
-    '/hairdressers/:id',
+    '/hairdressers/:hairdresserId',
     isAuthenticated,
     isAdmin,
     userController.updateHairdresserStatus
