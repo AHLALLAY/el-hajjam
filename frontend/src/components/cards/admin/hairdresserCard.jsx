@@ -4,9 +4,9 @@ import fetchEndPoint from "../../../services/apiHandler";
 
 function HairdresserCard({ data, onUpdate }) {
   const [error, setError] = useState("");
-  const handleStatusChange = async (id, status) => {
+  const handleStatusChange = async (hairdresserId, status) => {
     try {
-      await fetchEndPoint(`/users/hairdressers/${id}`, "PATCH", { status: status });
+      await fetchEndPoint(`/users/hairdressers/${hairdresserId}`, "PATCH", { status: status });
       onUpdate();
       setError("");
     } catch (err) {
