@@ -1,5 +1,6 @@
 import AppError from "../utils/appError.js";
 import userUtils from "../utils/userUtils.js";
+import rateLimit from 'express-rate-limit';
 
 export async function isAuthenticated(req, res, next) {
     try {
