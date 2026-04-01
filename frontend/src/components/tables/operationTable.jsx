@@ -39,14 +39,14 @@ function OperationTable({ data }) {
             <td className="px-4 py-3 text-slate-200">
               {operation.service.name}
             </td>
-            <td className={`px-4 py-3 ${operation.amountReceived < operation.price ? "text-red-400" : "text-slate-200"}`}>
+            <td className={`px-4 py-3 ${operation.amountReceived < operation.service.price ? "text-red-400" : "text-slate-200"}`}>
               {operation.amountReceived}
             </td>
             <td className="px-4 py-3 text-slate-200">
               {operation.hairdresser.firstName}{" "}
               {operation.hairdresser.lastName}
             </td>
-            <td className="px-4 py-3 text-slate-200">{operation.price}</td>
+            <td className="px-4 py-3 text-slate-200">{operation.service.price}</td>
             <td className="px-4 py-3 text-slate-200">{operation.tip}</td>
           </tr>
         ))}
