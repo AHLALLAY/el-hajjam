@@ -11,10 +11,7 @@ function StatisticsCard() {
     if (!currentUser?.id) return;
     try {
       setLoading(true);
-      const res = await fetchEndPoint(
-        `/operations/hairdresser/${currentUser.id}`,
-        "GET"
-      );
+      const res = await fetchEndPoint(`/operations/${currentUser.id}`);
       setOperationCount(res.data?.length ?? 0);
     } catch (err) {
       setError(err.message);
