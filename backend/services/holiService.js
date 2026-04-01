@@ -8,19 +8,19 @@ class HoliService {
         return cleanObject(holiday);
     }
 
-    async getHolidays() {
+    async getAllHolidays() {
         const holidays = await Holiday.find()
             .populate("hairdresserId", "firstName lastName");
         return holidays.map((h) => cleanObject(h));
     }
 
-    async listHolidaysByHairdresser(hairdresserId) {
+    async getHolidaysByHairdresser(hairdresserId) {
         const holidays = await Holiday.find({ hairdresserId })
             .populate("hairdresserId", "firstName lastName");
         return holidays.map((h) => cleanObject(h));
     }
 
-    async updateStats(holidayId, body) {
+    async updateHolidayStatus(holidayId, body) {
         const { status } = body;
         const holiday = await Holiday.findByIdAndUpdate(
             holidayId,

@@ -16,21 +16,21 @@ router.get(
     '/',
     isAuthenticated,
     isAdmin,
-    HoliController.getHolidays
+    HoliController.getAllHolidays
 );
 
 router.get(
     '/:hairdresserId',
     isAuthenticated,
     isAdminOrOwnHairdresser,
-    HoliController.listHolidaysByHairdresser
+    HoliController.getHolidaysByHairdresser
 );
 
 router.patch(
     '/:id',
     isAuthenticated,
     isAdmin,
-    HoliController.updateStats
+    HoliController.updateHolidayStatus
 );
 
 export default router;
