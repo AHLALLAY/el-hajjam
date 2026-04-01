@@ -2,41 +2,35 @@ import Operation from "../models/operation.js";
 import User from "../models/user.js";
 import AppError from "../utils/appError.js";
 import cleanObject from "../utils/cleaner.js";
-import Service from "../models/service.js";
 
 class OperService {
-  async getOperations() {
+  async getAllOperations() {
     const operations = await Operation.find()
       .populate("serviceId", "name price")
       .populate("hairdresserId", "firstName lastName");
 
-    // UX: une liste vide n'est pas une erreur
-    if (operations.length === 0) return [];
+    if (operations.length === 0) return []; // UX: une liste vide n'est pas une erreur
 
     // Format unifié côté frontend (OperationTable + filtres admin)
     return operations.map((op) => ({
       id: op.id,
-
-      // IDs pour filtrer côté admin
-      serviceId: op.serviceId?._id?.toString?.() ?? op.serviceId?._id ?? null,
-      hairdresserId:
-        op.hairdresserId?._id?.toString?.() ?? op.hairdresserId?._id ?? null,
-
-      // Objets attendus par operationTable.jsx
-      service: { name: op.serviceId?.name, price: op.serviceId?.price },
+      serviceId: op.serviceId?._id?.toString?.() ?? op.serviceId?._id ?? null,// IDs pour filtrer côté admin
+      hairdresserId: op.hairdresserId?._id?.toString?.() ?? op.hairdresserId?._id ?? null,
+      service: { 
+        name: op.serviceId?.name, 
+        price: op.serviceId?.price 
+      },// Objets attendus par operationTable.jsx
       hairdresser: {
         firstName: op.hairdresserId?.firstName,
         lastName: op.hairdresserId?.lastName,
       },
-
       amountReceived: op.amountReceived,
-      price: op.price,
       tip: op.tip,
       createdAt: op.createdAt,
     }));
   }
 
-  async listOperationsByHairdresser(hairdresserId) {
+  async getOperationsByHairdresser(hairdresserId) {
     if (!hairdresserId) throw AppError.validation("hairdresserId");
     const operations = await Operation.find({ hairdresserId })
       .populate("serviceId", "name price")
@@ -44,13 +38,15 @@ class OperService {
     if (operations.length === 0) return [];
     return operations.map((op) => ({
       id: op.id,
-      service: { name: op.serviceId?.name },
+      service: { 
+        name: op.serviceId?.name,
+        price: op.serviceId?.price,
+      },
       hairdresser: {
         firstName: op.hairdresserId?.firstName,
         lastName: op.hairdresserId?.lastName,
       },
       amountReceived: op.amountReceived,
-      price: op.price,
       tip: op.tip,
       createdAt: op.createdAt,
     }));
@@ -87,7 +83,7 @@ class OperService {
     }
 
     // Une ligne par coiffeur (même sans opération)
-    const resume = hairdressers.map((h) => {
+    const summary = hairdressers.map((h) => {
       const id = h._id.toString();
       const stats = statsByHairdresser[id] ?? {
         totalOperations: 0,
@@ -103,14 +99,14 @@ class OperService {
       };
     });
 
-    resume.sort(
+    summary.sort(
       (a, b) =>
         b.totalTip - a.totalTip ||
         `${a.hairdresser.firstName} ${a.hairdresser.lastName}`.localeCompare(
           `${b.hairdresser.firstName} ${b.hairdresser.lastName}`
         )
     );
-    return resume;
+    return summary;
   }
 }
 

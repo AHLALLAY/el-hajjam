@@ -10,7 +10,7 @@ class ServService {
         return cleanObject(service);
     }
     
-    async getServices() {
+    async getAllServices() {
         const services = await Service.find();
         if (services.length === 0) return []; // UX: une liste vide n'est pas une erreur
         return services;

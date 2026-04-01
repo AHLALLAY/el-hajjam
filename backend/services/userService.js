@@ -2,9 +2,10 @@ import User from '../models/user.js';
 import bcrypt from 'bcryptjs';
 import AppError from '../utils/appError.js';
 import cleanObject from '../utils/cleaner.js';
+import validation from '../utils/validation.js';
 
 class UserService {
-    async getHairdressers() {
+    async getAllHairdressers() {
         const users = await User.find({ role: 'coiffeur' }, '-password -__v');
         if (users.length === 0) return []; // UX: une liste vide n'est pas une erreur
         return users;
@@ -19,20 +20,31 @@ class UserService {
     }
 
     async createHairdresser(hairdresserData) {
-        const existingEmail = await User.findOne({ email: hairdresserData.email });
+        const { firstName, lastName, email, password, phone, cin, address } = hairdresserData;
+        if (!email || !password) throw AppError.validation(["email", "password"]);
+        if (!validation.isValidEmail(email)) throw AppError.validation("l'email");
+        if (!validation.isValidPassword(password)) throw AppError.validation("le mot de passe");
+
+        const existingEmail = await User.findOne({ email });
         if (existingEmail) {
             throw AppError.conflict("Cet email");
         }
 
-        const existingCin = await User.findOne({ cin: hairdresserData.cin });
+        const existingCin = await User.findOne({ cin });
         if (existingCin) {
             throw AppError.conflict("Ce CIN");
         }
 
-        const hashedPassword = await bcrypt.hash(hairdresserData.password, 10);
+        const hashedPassword = await bcrypt.hash(password, 10);
         const user = await User.create({
-            ...hairdresserData,
-            password: hashedPassword
+            firstName,
+            lastName,
+            email,
+            password: hashedPassword,
+            phone,
+            cin,
+            address,
+            role: 'coiffeur',
         });
 
         return cleanObject(user);
