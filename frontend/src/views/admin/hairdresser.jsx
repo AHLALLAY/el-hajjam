@@ -43,6 +43,8 @@ function Hairdresser() {
       setPhone("");
       setCin("");
       setAddress("");
+      setShowModal(false);
+      setError("");
       loadHairdressers();
     } catch (err) {
       setError(err.message);
