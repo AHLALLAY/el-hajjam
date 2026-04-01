@@ -33,6 +33,10 @@ app.get('/', (req, res) => {
     res.send('The server is running correctly');
 });
 
+app.use((req, res) => {
+    return rr(res, 404, false, TextMsg.notFound('Ressource'), null);
+});
+
 app.use((err, req, res, next) => {
     const statusCode = err.statusCode || 500;
     const message = err.message || TextMsg.serverError();
