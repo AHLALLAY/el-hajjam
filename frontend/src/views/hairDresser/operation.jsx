@@ -72,9 +72,6 @@ function Operation() {
   return (
     <Layout role="coiffeur">
       <div className="p-4 flex justify-between items-center mt-6 mb-10">
-        <h1 className="text-3xl font-bold tracking-tight text-yellow-600">
-          Opérations
-        </h1>
         <Button
           className="bg-yellow-600 hover:bg-yellow-700 text-white"
           onClick={() => setShowModal(true)}

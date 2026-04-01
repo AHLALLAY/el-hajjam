@@ -68,10 +68,6 @@ function Layout({ role = "admin", children }) {
             />
           </svg>
         </Button>
-        <span className="text-sm font-semibold text-yellow-600 truncate max-w-[55%] text-center">
-          {user ? `${user.firstName} ${user.lastName}` : "El-Hajjam"}
-        </span>
-        <span className="w-10 shrink-0" aria-hidden />
       </header>
 
       {isMenuOpen && (
