@@ -8,7 +8,7 @@ function Dashboard() {
       <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
         <StatisticsCard />
       </div>
-      <div className="overflow-hidden rounded-lg border border-yellow-700/50 mt-8">
+      <div className="overflow-x-auto rounded-lg border border-yellow-700/50 mt-8">
         <OperationsSummaryTable />
       </div>
     </Layout>

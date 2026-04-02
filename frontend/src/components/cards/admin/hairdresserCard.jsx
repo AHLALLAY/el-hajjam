@@ -57,7 +57,7 @@ function HairdresserCard({ data, onUpdate }) {
             <div className="pt-2 border-t border-slate-600">
               {hairdresser.status === "actif" && (
                 <Button
-                  className="bg-amber-600 hover:bg-amber-700 text-white w-full"
+                  className="bg-yellow-600 hover:bg-yellow-700 text-white w-full px-6 py-2"
                   onClick={() => {
                     handleStatusChange(hairdresser._id, "suspendu");
                   }}
@@ -67,7 +67,7 @@ function HairdresserCard({ data, onUpdate }) {
               )}
               {hairdresser.status === "suspendu" && (
                 <Button
-                  className="bg-green-600 hover:bg-green-700 text-white w-full"
+                  className="bg-green-600 hover:bg-green-700 text-white w-full px-6 py-2"
                   onClick={() => {
                     handleStatusChange(hairdresser._id, "actif");
                   }}

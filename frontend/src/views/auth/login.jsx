@@ -48,7 +48,7 @@ function Login() {
       </div>
       <form
         onSubmit={loginAction}
-        className="w-full max-w-md shrink-0 bg-white/20 border border-yellow-700 rounded-xl p-6 shadow-2xl space-y-6"
+        className="w-full max-w-md shrink-0 bg-white/20 border border-yellow-700/50 rounded-xl p-6 shadow-2xl space-y-6"
       >
         {error && <p className="text-red-500 text-sm">{error}</p>}
         <div className="space-y-4">
@@ -71,7 +71,7 @@ function Login() {
         </div>
         <Button
           type="submit"
-          className="bg-yellow-600 hover:bg-yellow-700 text-white w-full"
+          className="bg-yellow-600 hover:bg-yellow-700 text-white w-full px-6 py-2"
         >
           Se connecter
         </Button>

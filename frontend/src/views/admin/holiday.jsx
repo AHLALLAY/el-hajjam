@@ -21,11 +21,11 @@ function Holiday() {
     return (
         <Layout role="admin">
             {error && (
-                <p className="text-red-600 bg-red-50 border border-red-200 rounded-lg p-3 mb-4">
+                <p className="text-red-300 bg-red-900/30 border border-red-500/50 rounded-lg p-3 mb-4">
                     {error}
                 </p>
             )}
-            <div className="overflow-hidden rounded-lg border border-yellow-700/50">
+            <div className="overflow-x-auto rounded-lg border border-yellow-700/50">
                 <HolidayTable data={holiday} onHolidayUpdated={loadHoliday} role={"admin"} />
             </div>
         </Layout>

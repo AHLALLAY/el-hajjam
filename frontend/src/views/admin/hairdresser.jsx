@@ -61,14 +61,14 @@ function Hairdresser() {
     <Layout role="admin">
       <div className="p-4 flex justify-between items-center mt-6 mb-10">
         <Button
-          className="bg-yellow-600 hover:bg-yellow-700 text-white"
+          className="bg-yellow-600 hover:bg-yellow-700 text-white px-6 py-2"
           onClick={() => setShowModal(true)}
         >
           Nouveau coiffeur
         </Button>
       </div>
       {error && (
-        <p className="text-red-600 bg-red-50 border border-red-200 rounded-lg p-3 mb-4">
+        <p className="text-red-300 bg-red-900/30 border border-red-500/50 rounded-lg p-3 mb-4">
           {error}
         </p>
       )}
@@ -87,7 +87,7 @@ function Hairdresser() {
           className="border border-white/20 p-6 rounded-xl bg-white/20 shadow-2xl shadow-black/20 max-w-lg w-full"
         >
           <div className="flex justify-between items-center mb-6 px-2 text-yellow-600 font-bold">
-            <h1 className="text-xl">Nouveau Coiffeur</h1>
+            <h2 className="text-xl">Nouveau Coiffeur</h2>
             <button
               type="button"
               className="w-10 h-10 rounded-full flex items-center justify-center text-xl hover:bg-yellow-700/30 text-yellow-700 transition-colors"
@@ -179,13 +179,13 @@ function Hairdresser() {
           <div className="flex flex-col space-y-3 mt-6">
             <Button
               type="submit"
-              className="bg-yellow-600 hover:bg-yellow-700 text-white w-full"
+              className="bg-yellow-600 hover:bg-yellow-700 text-white w-full px-6 py-2"
             >
               {loading ? "En cours ..." : "Ajouter"}
             </Button>
             <Button
               type="button"
-              className="text-yellow-600 hover:bg-yellow-600/30 hover:text-white/60 w-full"
+              className="text-yellow-600 hover:bg-yellow-600/30 hover:text-white/60 w-full px-6 py-2"
               onClick={() => {
                 setShowModal(false);
               }}

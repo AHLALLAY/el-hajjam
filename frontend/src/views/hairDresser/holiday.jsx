@@ -55,7 +55,7 @@ function Holiday() {
     <Layout role="coiffeur">
       <div className="p-4 flex justify-between items-center mt-6 mb-10">
         <Button
-          className="bg-yellow-600 hover:bg-yellow-700 text-white"
+          className="bg-yellow-600 hover:bg-yellow-700 text-white px-6 py-2"
           onClick={() => setShowModal(true)}
         >
           Nouvelle demande
@@ -66,7 +66,7 @@ function Holiday() {
           {error}
         </p>
       )}
-      <div className="overflow-hidden rounded-lg border border-yellow-700/50">
+      <div className="overflow-x-auto rounded-lg border border-yellow-700/50">
         <HolidayTable data={myHoliday} role={"coiffeur"} />
       </div>
       <div
@@ -118,13 +118,13 @@ function Holiday() {
           <div className="flex flex-col space-y-3 mt-6">
             <Button
               type="submit"
-              className="bg-yellow-600 hover:bg-yellow-700 text-white w-full"
+              className="bg-yellow-600 hover:bg-yellow-700 text-white w-full px-6 py-2"
             >
               {loading ? "En cours…" : "Demander"}
             </Button>
             <Button
               type="button"
-              className="text-yellow-600 hover:bg-yellow-600/30 hover:text-white/60 w-full"
+              className="text-yellow-600 hover:bg-yellow-600/30 hover:text-white/60 w-full px-6 py-2"
               onClick={() => {
                 setShowModal(false);
               }}

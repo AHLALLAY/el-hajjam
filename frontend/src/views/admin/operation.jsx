@@ -67,11 +67,11 @@ function Operation() {
   }, []);
   return (
     <Layout role="admin">
-      {error && <p className="text-red-500">{error}</p>}
+      {error && <p className="text-red-300 bg-red-900/30 border border-red-500/50 rounded-lg p-3 mb-4" role="alert">{error}</p>}
       {/* filter */}
-      <div className="flex justify-between w-full">
-        <div className="flex space-x-2">
-          <div className="flex gap-2 items-center ml-2 mb-6 max-w-xs">
+      <div className="flex flex-col sm:flex-row sm:justify-between gap-3 w-full">
+        <div className="flex flex-wrap gap-2">
+          <div className="flex gap-2 items-center max-w-xs">
             <label className="block text-sm font-medium text-slate-300">
               Coiffeur
             </label>
@@ -88,7 +88,7 @@ function Operation() {
               ))}
             </select>
           </div>
-          <div className="flex gap-2 items-center ml-2 mb-6 max-w-xs">
+          <div className="flex gap-2 items-center max-w-xs">
             <label className="block text-sm font-medium text-slate-300">
               Service
             </label>
@@ -107,14 +107,14 @@ function Operation() {
           </div>
         </div>
         <Button
-          className="bg-yellow-600 hover:bg-yellow-700 text-white h-12"
+          className="bg-yellow-600 hover:bg-yellow-700 text-white h-12 px-6"
           onClick={initFilter}
         >
           Initialiser
         </Button>
       </div>
       {/* tableau de données */}
-      <div className="overflow-hidden rounded-lg border border-yellow-700/50">
+      <div className="overflow-x-auto rounded-lg border border-yellow-700/50">
         <OperationTable data={displayedOperations} />
       </div>
     </Layout>

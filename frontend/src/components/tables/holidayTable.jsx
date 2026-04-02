@@ -35,9 +35,9 @@ function HolidayTable({ data, onHolidayUpdated, role = "admin" }) {
     const isAdmin = role === "admin";
 
     return (
-        <div className="w-full">
+        <div className="w-full overflow-x-auto">
             {error && (
-                <p className="text-red-600 bg-red-50 border border-red-200 rounded-lg p-3 mb-4" role="alert">
+                <p className="text-red-300 bg-red-900/30 border border-red-500/50 rounded-lg p-3 mb-4" role="alert">
                     {error}
                 </p>
             )}
@@ -81,9 +81,9 @@ function HolidayTable({ data, onHolidayUpdated, role = "admin" }) {
                                     year: "numeric",
                                 })}
                             </td>
-                            <td>
+                            <td className="md:px-2 px-0.5 py-1">
                                 <span
-                                    className={`px-2 py-1 text-slate-200 rounded-lg ${holiday.status === "en attente"
+                                    className={`md:px-2 px-0.5 py-1 text-slate-200 rounded-lg whitespace-nowrap ${holiday.status === "en attente"
                                         ? "bg-yellow-400/60"
                                         : holiday.status === "refusée"
                                             ? "bg-red-400/60"
@@ -99,14 +99,14 @@ function HolidayTable({ data, onHolidayUpdated, role = "admin" }) {
                                         <div className="flex flex-wrap gap-2">
                                             <Button
                                                 type="button"
-                                                className="bg-green-600 hover:bg-green-700 text-white"
+                                                className="bg-green-600 hover:bg-green-700 text-white w-20 text-center"
                                                 onClick={() => handleAcceptHoliday(holiday._id)}
                                             >
                                                 Accepter
                                             </Button>
                                             <Button
                                                 type="button"
-                                                className="bg-red-600 hover:bg-red-700 text-white"
+                                                className="bg-red-600 hover:bg-red-700 text-white w-20 text-center"
                                                 onClick={() => handleRejectHoliday(holiday._id)}
                                             >
                                                 Refuser

@@ -68,7 +68,7 @@ function OperationsSummaryTable() {
             key={item?.id ?? `${item?.hairdresser?.firstName}-${item?.hairdresser?.lastName}`}
             className="bg-white/20 hover:bg-white/30 transition-colors"
           >
-            <td className="px-4 py-3 text-slate-200">
+            <td className="px-4 py-3 text-slate-200 max-w-[12rem] truncate">
               {item?.hairdresser?.firstName} {item?.hairdresser?.lastName}
             </td>
             <td className="px-4 py-3 text-slate-200">{item?.totalOperations}</td>

@@ -30,7 +30,7 @@ function ServiceTable({ data }) {
                 minute: "2-digit",
               })}
             </td>
-            <td className="px-4 py-3 text-slate-200">{service.name}</td>
+            <td className="px-4 py-3 text-slate-200 max-w-[12rem] truncate">{service.name}</td>
             <td className="px-4 py-3 text-slate-200">{service.price}</td>
           </tr>
         ))}

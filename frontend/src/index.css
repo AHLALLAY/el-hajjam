@@ -6,7 +6,7 @@ html,
 body,
 #root {
   min-height: 100%;
-  background-color: #003b4a;
+  @apply bg-app;
 }
 
 /* Masquer la barre de défilement dans les zones scrollables (ex: main) */

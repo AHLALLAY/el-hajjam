@@ -39,7 +39,7 @@ function StatisticsCard() {
   }, []);
 
   const cardBase =
-    "rounded-xl border border-yellow-600/40 bg-white/20 p-5 shadow-md transition-shadow hover:shadow-lg hover:border-yellow-500/50";
+    "rounded-xl border border-yellow-700/50 bg-white/20 p-5 shadow-md transition-shadow hover:shadow-lg hover:border-yellow-700/30";
 
   return (
     <>
