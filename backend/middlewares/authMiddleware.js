@@ -17,5 +17,6 @@ export const loginLimiter = rateLimit({
     windowMs: 15 * 60 * 1000,
     max: 3,
     skipSuccessfulRequests: true, // les connexions réussies ne comptent pas
+    keyGenerator: (req) => req.body?.email, // clé par email
     message: { success: false, message: 'Trop de tentatives. Réessayez dans 15 minutes.' }
 });
