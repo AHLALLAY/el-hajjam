@@ -10,6 +10,8 @@ dist
 # Dossier docs sauf le fichier PDF spécifique
 docs/**
 !docs/cahier-des-charges/
+!docs/Salon de coiffeur(diagramme de classe).drawio.pdf
+!docs/Salon de coiffeur(use case).drawio.pdf
 !docs/cahier-des-charges/salon_de_coiffeur.pdf
 
 # Configuration de l'éditeur
